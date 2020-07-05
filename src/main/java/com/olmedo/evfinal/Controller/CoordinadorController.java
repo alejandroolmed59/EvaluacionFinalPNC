@@ -4,13 +4,10 @@ package com.olmedo.evfinal.Controller;
 import com.olmedo.evfinal.Repositories.EscuelaRepository;
 import com.olmedo.evfinal.Repositories.ExpedienteRepository;
 import com.olmedo.evfinal.Services.ExpedienteService;
-import com.olmedo.evfinal.domain.Escuela;
-import com.olmedo.evfinal.domain.Expediente;
-import com.olmedo.evfinal.domain.Municipio;
-import com.olmedo.evfinal.domain.Usuario;
+import com.olmedo.evfinal.ViewModels.ExpedienteXmateria;
+import com.olmedo.evfinal.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,11 +55,21 @@ public class CoordinadorController {
         return mav;
     }
 
+    @RequestMapping("/coordinador/Materias/id/{idExpediente}")
+    public ModelAndView materiasCursadas(@PathVariable("idExpediente") int idExpediente){
+        Expediente ex = expedienteRepository.getOne(idExpediente);
+        ModelAndView mav = new ModelAndView();
+        List<ExpedienteXmateria> emList = expedienteRepository.obtenerMateriasDeExpediente(idExpediente);
+        mav.addObject("materias", emList);
+        mav.setViewName("/Coordinador/displayMateriasCursadas");
+        return mav;
+    }
+
     //POSTS
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(Expediente expediente) throws ParseException {
         expedienteRepository.save(expediente);
-        return new RedirectView("/coordinador/Expedientes");
+        return new RedirectView("/coordinador/inicio");
     }
 
     @PostMapping("/coordinador/post/filtrarExpedientes")

@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(schema = "public", name = "expediente")
@@ -37,8 +39,10 @@ public class Expediente {
     @JoinColumn(name = "idescuela")
     private Escuela escuela;
 
+
     public Expediente() {
     }
+
 
     public int getIdExpediente() {
         return idExpediente;
