@@ -62,7 +62,6 @@ public class Usuario {
         this.apellido = apellido;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre1;
-
         this.direccion = direccion;
         this.contrasennia = contrasennia;
         this.estado = estado;

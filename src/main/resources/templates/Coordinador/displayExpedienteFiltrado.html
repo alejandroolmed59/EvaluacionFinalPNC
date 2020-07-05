@@ -126,32 +126,34 @@
 <div class="main-block">
     <div class="left-part">
         <i class="fas fa-graduation-cap"></i>
-        <h1>Administrar Materias</h1>
+        <h1>Expedientes filtrados</h1>
 
     </div>
     <table class="table table-striped table-dark">
         <thead>
         <th scope="col">Accion</th>
-        <th scope="col">Codigo</th>
-        <th scope="col">Nombre escuela</th>
-        <th scope="col">Descripccion</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Departamento</th>
-        <th scope="col">Municipio</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Materias Aprobadas</th>
+        <th scope="col">Materias reprobadas</th>
+        <th scope="col">Promedio</th>
         </thead>
-        <th:block th:each="escuela, row:${escuelas}">
+        <th:block th:each="expediente, row:${expedientes}">
             <tr>
                 <th scope="row">
-                        <a class="btn btn-primary" th:href="@{/admin/editEscuela/id/}+${{escuela.idEscuela}}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
+                    <a class="btn btn-primary" th:href="@{/coordinador/editExpediente/id/}+${{expediente.idExpediente}}" >
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-primary">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                 </th>
-                <th th:text="${escuela.idEscuela}"/>
-                <th th:text="${escuela.nombre}"/>
-                <th th:text="${escuela.descripcion}"/>
-                <th th:text="${escuela.estado} ? 'Activa' : 'No activa'"/>
-                <th th:text="${escuela.municipio.departamento.nombreDepartamento}"/>
-                <th th:text="${escuela.municipio.nombreMunicipio}"/>
+                <th th:text="${expediente.nombre}"/>
+                <th th:text="${expediente.apellido}"/>
+                <th />
+                <th />
+                <th />
+
             </tr>
         </th:block>
     </table>

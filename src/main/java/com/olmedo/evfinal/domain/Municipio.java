@@ -11,14 +11,10 @@ public class Municipio {
     private int idMunicipio;
     @Column(name = "nombremunicipio")
     private String nombreMunicipio;
-    @Column(name = "iddepartamento")
-    private int idDepartamento;
 
-    public Municipio(int idMunicipio, String nombreMunicipio, int idDepartamento) {
-        this.idMunicipio = idMunicipio;
-        this.nombreMunicipio = nombreMunicipio;
-        this.idDepartamento = idDepartamento;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "iddepartamento")
+    private Departamento departamento;
 
     public Municipio() {
     }
@@ -39,11 +35,11 @@ public class Municipio {
         this.nombreMunicipio = nombreMunicipio;
     }
 
-    public int getIdDepartamento() {
-        return idDepartamento;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setIdDepartamento(int idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 }

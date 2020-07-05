@@ -23,8 +23,6 @@ public class Escuela {
     @Column(name = "estado")
     private boolean estado;
 
-    @Column(name = "edad")
-    private int edad;
 
     public int getIdEscuela() {
         return idEscuela;
@@ -53,14 +51,6 @@ public class Escuela {
 
     public Municipio getMunicipio() {
         return municipio;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public void setMunicipio(Municipio municipio) {
