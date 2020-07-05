@@ -4,6 +4,10 @@
     <title>Educational registration form</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- Include Bootstrap Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
     <style>
         html, body {
             min-height: 100%;
@@ -124,25 +128,37 @@
 <div class="main-block">
     <div class="left-part">
         <i class="fas fa-graduation-cap"></i>
-        <h1>Administrar Centro Escolar</h1>
+        <h1>Administrar Usuario</h1>
 
     </div>
-    <form th:action="@{/admin/post/editEscuela}" th:object="${escuela}" method="post">
+    <form th:action="@{/admin/post/editUsuario}" th:object="${usuario}" method="post">
         <div class="title">
             <i class="fas fa-pencil-alt"></i>
-            <h2>Centro escolar</h2>
+            <h2>Usuario</h2>
         </div>
+        <input hidden th:field="*{idUsuario}">
         <div class="info">
-            <input hidden th:field="*{idEscuela}">
-            <input class="fname" type="text" th:field="*{nombre}" name="name" placeholder="Nombre">
-            <input type="text" name="des" th:field="*{descripcion}"  placeholder="Descripccion">
+            <input class="fname" type="text" th:field="*{nombreUsuario}" name="materia" placeholder="Nombre Usuario">
+            <input type="text" name="constrasennia" th:field="*{contrasennia}"  placeholder="Contraseña">
+            <input type="text" name="nombre" th:field="*{nombre}"  placeholder="Nombre completo">
+            <input type="text" name="apellido" th:field="*{apellido}"  placeholder="Apellido completo">
+            <input type="text" name="direccion" th:field="*{direccion}"  placeholder="Direccion">
+
             <select th:field="*{municipio.idMunicipio}" >
                 <option th:each="m: ${municipios}" th:value="${m.idMunicipio}" th:text="${m.nombreMunicipio}"></option>
             </select>
         </div>
+        <div>
+            <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaBD}" >
+        </div>
         <div class="checkbox">
             <input type="checkbox" th:field="*{estado}" name="checkbox"><span>¿Estado Activo?</span>
         </div>
+        <div class="checkbox">
+            <input type="checkbox" th:field="*{admin}" name="checkbox"><span>¿Es admin?</span>
+        </div>
+
+
         <button type="submit">Submit</button>
     </form>
 </div>

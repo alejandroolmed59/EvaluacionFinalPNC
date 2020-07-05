@@ -6,12 +6,12 @@ import javax.persistence.*;
 @Table(schema = "public", name = "municipio")
 public class Municipio {
     @Id
-    @Column(name = "idMunicipio")
+    @Column(name = "idmunicipio")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMunicipio;
-    @Column(name = "nombreMunicipio")
+    @Column(name = "nombremunicipio")
     private String nombreMunicipio;
-    @Column(name = "idDepartamento")
+    @Column(name = "iddepartamento")
     private int idDepartamento;
 
     public Municipio(int idMunicipio, String nombreMunicipio, int idDepartamento) {

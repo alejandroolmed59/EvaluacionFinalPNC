@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface MunicipioRepository extends JpaRepository<Municipio, Integer> {
-    @Query(value = "SELECT * from public.Municipio", nativeQuery = true)
+    @Query(value = "SELECT * from public.Municipio ORDER BY idMunicipio ASC", nativeQuery = true)
     public List<Municipio> findAllMunicipios();
 }

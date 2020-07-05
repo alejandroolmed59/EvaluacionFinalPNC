@@ -6,19 +6,25 @@ import javax.persistence.*;
 @Table(schema = "public", name = "escuela")
 public class Escuela {
     @Id
-    @Column(name = "idEscuela")
+    @Column(name = "idescuela")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEscuela;
 
-    @Column(name = "idMunicipio")
-    private int idMunicipio;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idmunicipio")
+    private Municipio municipio;
 
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "descripcion")
     private String descripcion;
+
     @Column(name = "estado")
     private boolean estado;
+
+    @Column(name = "edad")
+    private int edad;
 
     public int getIdEscuela() {
         return idEscuela;
@@ -28,13 +34,6 @@ public class Escuela {
         this.idEscuela = idEscuela;
     }
 
-    public int getIdMunicipio() {
-        return idMunicipio;
-    }
-
-    public void setIdMunicipio(int idMunicipio) {
-        this.idMunicipio = idMunicipio;
-    }
 
     public String getNombre() {
         return nombre;
@@ -52,10 +51,25 @@ public class Escuela {
         this.descripcion = descripcion;
     }
 
+    public Municipio getMunicipio() {
+        return municipio;
+    }
 
-    public Escuela(int idEscuela, int idMunicipio, String nombre, String descripcion, boolean estado) {
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    public Escuela(int idEscuela, Municipio municipio, String nombre, String descripcion, boolean estado) {
         this.idEscuela = idEscuela;
-        this.idMunicipio = idMunicipio;
+        this.municipio = municipio;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;

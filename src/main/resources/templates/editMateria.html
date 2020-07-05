@@ -127,11 +127,12 @@
         <h1>Administrar Materia</h1>
 
     </div>
-    <form th:action="@{/admin/post/editMunicipio}" th:object="${materia}" method="post">
+    <form th:action="@{/admin/post/editMateria}" th:object="${materia}" method="post">
         <div class="title">
             <i class="fas fa-pencil-alt"></i>
             <h2>Materia</h2>
         </div>
+        <input hidden th:field="*{idMateria}">
         <div class="info">
             <input class="fname" type="text" th:field="*{materia}" name="materia" placeholder="Materia">
             <input type="text" name="des" th:field="*{descripcion}"  placeholder="Descripccion">
