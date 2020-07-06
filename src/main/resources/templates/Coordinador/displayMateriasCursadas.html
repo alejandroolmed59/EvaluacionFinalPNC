@@ -151,7 +151,7 @@
                 <th th:text="${materia.annio}"/>
                 <th th:text="${materia.ciclo}"/>
                 <th th:text="${materia.nota}"/>
-                <th th:text="${materia.nota}>6? 'Aprobada' : 'Reprobada'"/>
+                <th th:text="${materia.nota}>=6? 'Aprobada' : 'Reprobada'"/>
             </tr>
         </th:block>
     </table>

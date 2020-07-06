@@ -57,9 +57,9 @@ public class JpaConfiguration {
 		 * En este caso el servidor postgres se encuentra en la misma maquina (localhost)
 		 * Cambiar a la IP correspondiente si en su caso no fuera asi
 		 */
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/Capas");
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("root");
+		dataSource.setUrl("jdbc:postgresql://ec2-35-173-94-156.compute-1.amazonaws.com:5432/df65st21d0rmf9");
+		dataSource.setUsername("odlqctjfyokepa");
+		dataSource.setPassword("136be4234dea9e42db85a4bd7daff144eb7c48c664afafc0d5f8f68b11884c14");
 		
 		return dataSource;
 	}
