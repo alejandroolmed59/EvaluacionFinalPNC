@@ -16,4 +16,7 @@ public interface ExpedienteRepository extends JpaRepository<Expediente, Integer>
             "FROM public.expediente ex INNER JOIN public.materiaexpediente me ON ex.idexpediente=me.idexpediente INNER JOIN public.materia m ON me.idmateria=m.idmateria\n" +
             "WHERE ex.idexpediente=:idexpediente" , nativeQuery=true)
     public List<ExpedienteXmateria> obtenerMateriasDeExpediente(@Param("idexpediente") Integer idExpediente);
+
+    @Query(value="INSERT INTO public.materiaexpediente(idexpediente, idmateria, ciclo, annio, nota)VALUES (?1, ?2, ?3, ?4, ?5);", nativeQuery=true)
+    public void guardarMateria(int idexpediente, int idmateria, String ciclo, String annio, Number nota);
 }

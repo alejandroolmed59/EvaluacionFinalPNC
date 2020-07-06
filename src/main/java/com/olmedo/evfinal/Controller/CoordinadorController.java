@@ -3,7 +3,9 @@ package com.olmedo.evfinal.Controller;
 
 import com.olmedo.evfinal.Repositories.EscuelaRepository;
 import com.olmedo.evfinal.Repositories.ExpedienteRepository;
+import com.olmedo.evfinal.Repositories.MateriaRepository;
 import com.olmedo.evfinal.Services.ExpedienteService;
+import com.olmedo.evfinal.ViewModels.ExpedienteMateriaClase;
 import com.olmedo.evfinal.ViewModels.ExpedienteXmateria;
 import com.olmedo.evfinal.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class CoordinadorController {
     ExpedienteRepository expedienteRepository;
     @Autowired
     ExpedienteService expedienteService;
+    @Autowired
+    MateriaRepository materiaRepository;
 
     @RequestMapping("/coordinador/inicio")
     public ModelAndView coordinadorInicio(){
@@ -60,8 +64,21 @@ public class CoordinadorController {
         Expediente ex = expedienteRepository.getOne(idExpediente);
         ModelAndView mav = new ModelAndView();
         List<ExpedienteXmateria> emList = expedienteRepository.obtenerMateriasDeExpediente(idExpediente);
+        mav.addObject("expediente", ex);
         mav.addObject("materias", emList);
         mav.setViewName("/Coordinador/displayMateriasCursadas");
+        return mav;
+    }
+    @RequestMapping("/coordinador/nueva/Materia/id/{idExpediente}")
+    public ModelAndView nuevaMateriaCursada(@PathVariable("idExpediente") int idExpediente){
+        Expediente ex = expedienteRepository.getOne(idExpediente);
+        ModelAndView mav = new ModelAndView();
+
+        List<Materia> materias = materiaRepository.findAllOrdenado();
+        mav.addObject("expediente", ex);
+        mav.addObject("materias", materias);
+        mav.addObject("modelo", new ExpedienteMateriaClase(ex.getIdExpediente()));
+        mav.setViewName("/Coordinador/nuevaMateriaCursada");
         return mav;
     }
 
@@ -79,5 +96,15 @@ public class CoordinadorController {
         mav.addObject("expedientes", expedienteList);
         mav.setViewName("/Coordinador/displayExpedienteFiltrado");
         return mav;
+    }
+    @PostMapping("/coordinador/post/nueva/Materia")
+    public RedirectView filtrarExp(ExpedienteMateriaClase emc)  {
+        try{
+            expedienteRepository.guardarMateria(emc.getIdexpediente(), emc.getIdmateria(), emc.getCiclo(), emc.getAnnio(), emc.getNota());
+        }catch(Exception e){
+            return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
+        }
+
+        return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
     }
 }
