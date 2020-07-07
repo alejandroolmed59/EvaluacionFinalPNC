@@ -37,6 +37,9 @@ public class AdminController {
 
     @RequestMapping("/admin/Usuarios")
     public ModelAndView usuarios(){
+      //  if(1==1){
+        //    return new ModelAndView( "redirect:/blank");
+        //}
         List<Usuario> listUsers = usuarioRepository.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuarios", listUsers);
@@ -56,6 +59,7 @@ public class AdminController {
 
     @RequestMapping("/admin/editUsuario/id/{idUsuario}")
     public ModelAndView editUsuario(@PathVariable("idUsuario") int idUsuario){
+
         Usuario user = usuarioRepository.getOne(idUsuario);
         List<Municipio> listaMunicipios = municipioService.findAll();
         ModelAndView mav = new ModelAndView();
