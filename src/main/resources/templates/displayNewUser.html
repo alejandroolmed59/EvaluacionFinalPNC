@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>New User</title>
+</head>
+<body>
+
+<form th:action="@{/home}" th:object="${usuario}" method="post">
+
+	<input hidden th:field="*{idUsuario}">
+	
+		<label>Usuario:</label>
+		<input type="text" th:field="*{nombreUsuario}" size="40" placeholder="User"><br>
+		<span th:errors ="*{nombreUsuario}" style= "color: #E81505;"></span><br>
+					
+		<label>Contraseña</label>
+		<input type="password" th:field="*{contrasennia}" size="40" placeholder="Password"><br>
+		<span th:errors ="*{contrasennia}" style= "color: #E81505;"></span><br>
+					
+		<label>Nombre</label>
+		<input type="text" th:field="*{nombre}" size="40" placeholder="Carnet"><br>
+		<span th:errors ="*{nombre}" style= "color: #E81505;"></span><br>
+					
+		<label>Apellido</label>
+		<input type="text" th:field="*{apellido}" size="40" placeholder="Carrera"><br>
+		<span th:errors ="*{apellido}" style= "color: #E81505;"></span><br>
+							
+		<label>Fecha de nacimiento</label>
+		<input type="Date" th:field="*{fechaBD}" size="40" placeholder="Carrera"><br>
+		<span th:errors ="*{fechaBD}" style= "color: #E81505;"></span><br>
+		
+		<label>Direccion</label>
+		<input type="text" th:field="*{}" size="40" placeholder="Carrera"><br>
+		<span th:errors ="*{carrera}" style= "color: #E81505;"></span><br>
+		
+		<label>Administrador</label>
+		<input type="radio" th:field="*{estado}" th:value="${true}">
+		<label>Coordinador</label>
+		<input type="radio" th:field="*{estado}" th:value="${false}"><br>
+		
+		<input type="submit" value="Agregar"><br><br>
+
+</form>
+
+</body>
+</html>
