@@ -1,12 +1,15 @@
 package com.olmedo.evfinal.Controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.olmedo.evfinal.Repositories.UsuarioRepository;
 import com.olmedo.evfinal.Services.MunicipioService;
@@ -27,16 +30,18 @@ public class UserController {
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usuario", new Usuario());
-		mav.setViewName("displayLogin");
+		mav.setViewName("Autenticacion/Login");
 		return mav;
 	}
 	
 	@RequestMapping("/insertUser")
 	public ModelAndView newUser(Usuario usuario) {
+		List<Municipio> Municipios = municipioService.findAll();
 		ModelAndView mav = new ModelAndView();
 		usuarioRepository.save(usuario);
 		mav.addObject("usuario", new Usuario());
-		mav.setViewName("displayNewUser");
+		mav.addObject("municipio", Municipios);
+		mav.setViewName("Autenticacion/Registrarse");
 		return mav;
 	}
 	
@@ -46,10 +51,8 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usuario", new Usuario());
 		mav.addObject("municipio", Municipios);
-		mav.setViewName("displayNewUser");
+		mav.setViewName("Autenticacion/Registrarse");
 		return mav;
 	} 
-	
-	
 	
 }
