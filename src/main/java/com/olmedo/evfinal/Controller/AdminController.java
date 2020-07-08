@@ -58,7 +58,7 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/editUsuario/id/{idUsuario}")
-    public ModelAndView editUsuario(@PathVariable("idUsuario") int idUs65uario){
+    public ModelAndView editUsuario(@PathVariable("idUsuario") int idUsuario){
 
         Usuario user = usuarioRepository.getOne(idUsuario);
         List<Municipio> listaMunicipios = municipioService.findAll();
