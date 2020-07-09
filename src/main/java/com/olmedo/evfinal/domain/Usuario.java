@@ -3,13 +3,7 @@ package com.olmedo.evfinal.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -28,29 +22,22 @@ public class Usuario{
 		this.idUsuario = idUsuario;
 	}
 
-    @NotEmpty(message = "El campo nombre no puede estar vacio")
 	@Column(name = "nombre")
     private String nombre;
 
-    @NotEmpty(message = "El campo apellido no puede estar vacio")
     @Column(name = "apellido")
     private String apellido;
 
-    @NotEmpty(message = "El campo nombre usuario no puede estar vacio")
     @Column(name = "nombreusuario")
     private String nombreUsuario;
 
-    @NotNull(message = "El campo fecha no puede estar vacio")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fechanac")
     private Date fechaBD;
 
-
-    @NotEmpty(message = "El campo direccion no puede estar vacio")
     @Column(name = "direccion")
     private String direccion;
 
-    @NotEmpty(message = "El campo contrasennia no puede estar vacio")
     @Column(name = "contrasennia")
     private String contrasennia;
 
@@ -158,49 +145,4 @@ public class Usuario{
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-<<<<<<< HEAD
-=======
-
-
-    public String getEdadDelegate() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(this.fechaBD );
-        if (this.fechaBD == null) return "";
-        else {
-            LocalDate localFechaBD = LocalDateTime.ofInstant(cal.toInstant(), cal.getTimeZone().toZoneId()).toLocalDate();
-            int edad = Period.between(localFechaBD, LocalDate.now()).getYears();
-            return new Integer(edad).toString();
-        }
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((idUsuario == null) ? 0 :idUsuario.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Usuario other = (Usuario) obj;
-        if (idUsuario == null) {
-            if (other.idUsuario != null)
-                return false;
-            } else if (!idUsuario.equals(other.idUsuario))
-                return false;
-            return true;
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + idUsuario + ", username=" + nombreUsuario + ", password=" + contrasennia + "]";
-    }
->>>>>>> 2be82afd61b07a8b09701942456d399d4e457e74
 }
