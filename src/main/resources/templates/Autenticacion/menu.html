@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Menu</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="get">
+            <input type="submit" value="Cerrar Sesion"/>
+        </form>
+        <h1>
+        <form th:action="@{/Admin}" method="post">
+            <button type="submit">Administrador</button>
+        </form>
+        <form th:action="@{/Coordinador}" method="post">
+            <button type="submit">Coordinador</button>
+        </form>
+        </h1>
+    </body>
+</html>

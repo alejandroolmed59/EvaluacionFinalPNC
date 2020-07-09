@@ -17,13 +17,13 @@
   <div class="h-100 d-flex flex-column justify-content-center align-items-center">
     <div class="card" style="width: 400px">
       <div class="card-body">
-        <form class="form-signin">
+        <form th:action="@{/login}" class="form-signin" method="post">
           <div class="text-center mb-4">
             <h1 class="h3 mb-4 font-weight-normal">Iniciar Sesión</h1>
           </div>
 
           <div class="form-label-group">
-            <input type="email" id="inputEmail" class="form-control" placeholder="Usuario" required>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Usuario" name = "username" required>
             <label for="inputEmail">
               <i class="fa fa-user" aria-hidden="true"></i>
               Usuario
@@ -31,7 +31,7 @@
           </div>
 
           <div class="form-label-group">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name = "password" required>
             <label for="inputPassword">
               <i class="fa fa-lock" aria-hidden="true"></i>
               Contraseña
@@ -41,6 +41,14 @@
           <p class="mt-4 text-center">¿No tienes una cuenta? <span><a href="/form">Registrate</a></span></p>
           <p class="mt-4 mb-1 text-muted text-center">&copy; Proyecto Capas 2020</p>
         </form>
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        	Invalid username or password
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+        	You have been logged out.
+        </div>
+        
+        
       </div>
     </div>
   </div>

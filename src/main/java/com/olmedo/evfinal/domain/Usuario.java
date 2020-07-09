@@ -1,13 +1,11 @@
 package com.olmedo.evfinal.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-import java.util.Collection;
 import java.util.Date;
-
+import java.util.Set;
 
 @Entity
 @Table(schema = "public", name = "usuario")
@@ -15,13 +13,29 @@ public class Usuario{
     @Id
     @Column(name = "idusuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private Integer idUsuario;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idmunicipio")
     private Municipio municipio;
+    
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idAutorithy"))
+	private Set<Autorithy> autorithy;
 
-    @Column(name = "nombre")
+    public Set<Autorithy> getAutorithy() {
+		return autorithy;
+	}
+
+	public void setAutorithy(Set<Autorithy> autorithy) {
+		this.autorithy = autorithy;
+	}
+
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	@Column(name = "nombre")
     private String nombre;
 
     @Column(name = "apellido")
@@ -144,9 +158,34 @@ public class Usuario{
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((idUsuario == null) ? 0 :idUsuario.hashCode());
+        return result;
+    }
 
-	public Collection<GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-		}
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario other = (Usuario) obj;
+        if (idUsuario == null) {
+            if (other.idUsuario != null)
+                return false;
+            } else if (!idUsuario.equals(other.idUsuario))
+                return false;
+            return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + idUsuario + ", username=" + nombreUsuario + ", password=" + contrasennia + "]";
+    }
+}

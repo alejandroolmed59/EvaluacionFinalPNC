@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.olmedo.evfinal.Repositories.UsuarioRepository;
 import com.olmedo.evfinal.Services.MunicipioService;
-import com.olmedo.evfinal.Services.UsuarioService;
 import com.olmedo.evfinal.domain.Municipio;
 import com.olmedo.evfinal.domain.Usuario;
 
@@ -26,11 +25,33 @@ public class UserController {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	@RequestMapping("/Login")
+	@RequestMapping({"/login", "/"})
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usuario", new Usuario());
 		mav.setViewName("Autenticacion/Login");
+		return mav;
+	}
+	
+	@RequestMapping("/menu")
+	public ModelAndView menu() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("Autenticacion/menu");
+		return mav;
+	}
+	
+	@RequestMapping("/Coordinador")
+	public ModelAndView coor() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("Autenticacion/Coordinador");
+		return mav;
+	}
+	
+
+	@RequestMapping("/Admin")
+	public ModelAndView adm() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("Autenticacion/Administrador");
 		return mav;
 	}
 	
@@ -51,6 +72,6 @@ public class UserController {
 		mav.addObject("municipio", Municipios);
 		mav.setViewName("Autenticacion/Registrarse");
 		return mav;
-	} 
+	}
 	
 }
