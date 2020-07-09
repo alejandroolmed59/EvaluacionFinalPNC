@@ -12,7 +12,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand mb-0 h1" href="#">
+        <a class="navbar-brand mb-0 h1" th:href="@{/admin/index}">
             <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
             Proyecto Capas
         </a>
@@ -23,16 +23,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Inicio</a>
+                    <a class="nav-link active" th:href="@{/admin/index}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Centros Escolares</a>
+                    <a class="nav-link" th:href="@{/admin/Escuelas}">Centros Escolares</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Materias </a>
+                    <a class="nav-link" th:href="@{/admin/Materias}">Materias </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Usuarios</a>
+                    <a class="nav-link" th:href="@{/admin/Usuarios}">Usuarios</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,7 +55,7 @@
                     <img src="../../static/img/school128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                     <h5 class="card-title mt-3">Centros Escolares</h5>
                     <p class="card-text">Aquí puedes acceder a todo lo relacionado a los centros escolares</p>
-                    <a href="#" class="btn btn-lg btn-primary btn-block">Ver Centros Escolares</a>
+                    <a th:href="@{/admin/Escuelas}" class="btn btn-lg btn-primary btn-block">Ver Centros Escolares</a>
                 </div>
             </div>
             <div class="card text-center mb-4" style="width: 25rem;">
@@ -63,7 +63,7 @@
                     <img src="../../static/img/subjects128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                     <h5 class="card-title mt-3">Materias</h5>
                     <p class="card-text">Aquí puedes acceder a todo lo relacionado a las materias</p>
-                    <a href="#" class="btn btn-lg btn-primary btn-block">Ver Materias</a>
+                    <a th:href="@{/admin/Materias}" class="btn btn-lg btn-primary btn-block">Ver Materias</a>
                 </div>
             </div>
             <div class="card text-center mb-4" style="width: 25rem;">
@@ -71,7 +71,7 @@
                     <img src="../../static/img/users128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                     <h5 class="card-title mt-3">Usuarios del sistema</h5>
                     <p class="card-text">Aquí puedes acceder a todo lo relacionado a los usuarios del sistema</p>
-                    <a href="#" class="btn btn-lg btn-primary btn-block">Ver Usuarios del Sistema</a>
+                    <a th:href="@{/admin/Usuarios}" class="btn btn-lg btn-primary btn-block">Ver Usuarios del Sistema</a>
                 </div>
             </div>
         </div>

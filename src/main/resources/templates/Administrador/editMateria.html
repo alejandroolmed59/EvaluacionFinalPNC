@@ -15,7 +15,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand mb-0 h1" href="#">
+    <a class="navbar-brand mb-0 h1" th:href="@{/admin/index}">
         <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
         Proyecto Capas
     </a>
@@ -26,16 +26,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" th:href="@{/admin/index}">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Centros Escolares</a>
+                <a class="nav-link" th:href="@{/admin/Escuelas}">Centros Escolares</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Materias </a>
+                <a class="nav-link" th:href="@{/admin/Materias}">Materias </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Usuarios</a>
+                <a class="nav-link" th:href="@{/admin/Usuarios}">Usuarios</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,7 +63,7 @@
             <div class="card-body col-md-6">
                 <form th:action="@{/admin/post/editMateria}" th:object="${materia}" method="post">
                     <input hidden th:field="*{idMateria}">
-                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" onclick="location.href='./displayEscuelas'" />
+                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" th:href="@{/admin/index}" />
                     <div class="form-group row">
                         <div class="col-sm-3">Materia: </div>
                         <div class="col-sm-9">
