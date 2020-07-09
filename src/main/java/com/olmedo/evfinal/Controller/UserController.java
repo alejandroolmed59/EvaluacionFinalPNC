@@ -60,7 +60,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		usuarioRepository.save(usuario);
 		mav.addObject("usuario", new Usuario());
-		mav.setViewName("Autenticacion/Registrarse");
+		mav.setViewName("Autenticacion/Login");
 		return mav;
 	}
 	
