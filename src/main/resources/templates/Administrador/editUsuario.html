@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
-    <title>Editar Expediente</title>
+    <title>Editar Usuario</title>
 </head>
 
 <body>
@@ -29,10 +29,13 @@
                 <a class="nav-link" href="#">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Expediente de Alumnos</a>
+                <a class="nav-link" href="#">Centros Escolares</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Información de materias </a>
+                <a class="nav-link" href="#">Materias </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Usuarios</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,25 +49,42 @@
     </div>
 </nav>
 <div class="d-flex ml-5 mb-2 mt-2">
-    <img src="../../static/img/editRecord128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
-    <h1 class="mt-4 ml-2 mb-4">Editar Expediente</h1>
+    <img src="../../static/img/users128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
+    <h1 class="mt-4 ml-2 mb-4">Editar Usuario</h1>
 </div>
 <div class="container-fluid mt-4">
     <div class="d-flex flex-column">
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-pencil-alt"></i>
-                Información de Expediente
+                Información de Usuario
             </div>
 
-            <div class="card-body col-md-7">
-                <form th:action="@{/coordinador/post/editExpediente}" th:object="${expediente}" method="post">
-                    <input hidden th:field="*{idExpediente}">
+            <div class="card-body col-md-6">
+                <form th:action="@{/admin/post/editUsuario}" th:object="${usuario}" method="post">
+                    <input hidden th:field="*{idUsuario}">
+                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" onclick="location.href='./displayEscuelas'" />
+                    <div class="form-group row">
+                        <div class="col-sm-3">Usuario: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{nombreUsuario}" name="usuario" placeholder="Nombre de usuario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Contraseña: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="constrasennia" th:field="*{contrasennia}"  placeholder="**********">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-3">Nombres: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
-                                <input type="text" class="form-control" th:field="*{nombre}" name="name" placeholder="Nombres">
+                                <input type="text" class="form-control" name="nombre" th:field="*{nombre}"  placeholder="Nombre completo">
                             </div>
                         </div>
                     </div>
@@ -72,15 +92,25 @@
                         <div class="col-sm-3">Apellidos: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
-                                <input type="text" class="form-control" th:field="*{apellido}" name="apellido" placeholder="Apellidos" >
+                                <input type="text" class="form-control" name="apellido" th:field="*{apellido}"  placeholder="Apellido completo">
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-3">Carné de minoridad: </div>
+                        <div class="col-sm-3">Direccion: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="car" th:field="*{carnetMinoridad}"  placeholder="Carnet de minoridad">
+                                <input type="text" class="form-control" name="direccion" th:field="*{direccion}"  placeholder="Direccion">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Municipio: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <select th:field="*{municipio.idMunicipio}" class="form-control">
+                                    <option th:each="m: ${municipios}" th:value="${m.idMunicipio}" th:text="${m.nombreMunicipio}"></option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -88,70 +118,35 @@
                         <div class="col-sm-3">Fecha de Nacimiento: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
-                                <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaNac}" placeholder="dd/mm/aaaa">
+                                <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaBD}" placeholder="dd/mm/aaaa">
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-3">Dirección: </div>
+                        <div class="col-sm-3">Estado: </div>
                         <div class="col-sm-9">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="dir" th:field="*{direccion}"  placeholder="Direccion">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="inputEstado" th:field="*{estado}" name="checkboxEstado">
+                                <label class="form-check-label" for="inputEstado">
+                                    Activo
+                                </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-3">Teléfono fijo: </div>
+                        <div class="col-sm-3">Rol: </div>
                         <div class="col-sm-9">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="tf" th:field="*{telfijo}"  placeholder="Telefono fijo">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="inputRol" th:field="*{admin}" name="checkboxRol">
+                                <label class="form-check-label" for="inputRol">
+                                    Administrador
+                                </label>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3">Teléfono móvil: </div>
-                        <div class="col-sm-9">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="tm" th:field="*{telmovil}"  placeholder="Telefono movil">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3">Escuela: </div>
-                        <div class="col-sm-9">
-                            <div class="form-group">
-                                <select th:field="*{escuela.idEscuela}"  class="form-control">
-                                    <option th:each="es: ${escuelas}"  th:value="${es.idEscuela}" th:text="${es.nombre}"></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3">Nombre del padre: </div>
-                        <div class="col-sm-9">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="np" th:field="*{nombrepadre}"  placeholder="Nombre padre">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-3">Nombre de la Madre: </div>
-                        <div class="col-sm-9">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="nm" th:field="*{nombremadre}"  placeholder="Nombre madre">
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-4">
+                    <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i>
                         Guardar
-                    </button>
-                    <button type="button" class="btn btn-danger mr-4" th:if="${flag}" class="btn btn-info" th:href="@{/coordinador/editExpediente}">
-                        <i class="fas fa-trash-alt"></i>
-                        Limpiar
-                    </button>
-                    <button type="button" class="btn btn-secondary" th:href="@{/coordinador/inicio}">
-                        Regresar
                     </button>
                 </form>
             </div>

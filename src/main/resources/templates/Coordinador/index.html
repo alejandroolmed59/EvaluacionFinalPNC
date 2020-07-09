@@ -7,13 +7,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
-    <title>Materias cursadas</title>
+    <title>Inicio - Coordinador</title>
 </head>
-
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand mb-0 h1" href="#">
         <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
@@ -26,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link active" href="#">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Expediente de Alumnos</a>
@@ -45,44 +42,27 @@
         </ul>
     </div>
 </nav>
-<div class="d-flex ml-5 mb-2 mt-2">
-    <img src="../../static/img/subjects128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
-    <h1 th:text="${expediente.nombre}+' '+${expediente.apellido}" />
-</div>
-<button type="button" class="btn btn-success ml-5 mb-4 mt-2" th:href="@{/coordinador/nueva/Materia/id/}+${{expediente.idExpediente}}">
-    <i class="fas fa-plus"></i>
-    Agregar Nueva Materia
-</button>
+
+<h1 class="mt-4 ml-5 mb-5">¡Bienvenido, coordinador!</h1>
+
 <div class="container-fluid">
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Accion</th>
-                <th scope="col">Nombre materia</th>
-                <th scope="col">Año cursada</th>
-                <th scope="col">Ciclo</th>
-                <th scope="col">Nota</th>
-                <th scope="col">Resultado</th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="materia, row:${materias}">
-                <tr>
-                    <th scope="row" style="text-align: center">
-                        <a class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </th>
-                    <th th:text="${materia.materia}"/>
-                    <th th:text="${materia.annio}"/>
-                    <th th:text="${materia.ciclo}"/>
-                    <th th:text="${materia.nota}"/>
-                    <th th:text="${materia.nota}>=6? 'Aprobada' : 'Reprobada'"/>
-                </tr>
-            </th:block>
-            </tbody>
-        </table>
+        <div class="card text-center mb-4" style="width: 25rem;">
+            <div class="card-body">
+                <img src="../../static/img/students128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
+                <h5 class="card-title mt-3">Expediente de Alumnos</h5>
+                <p class="card-text">Aquí puedes acceder a todo lo relacionado al expediente de los alumnos</p>
+                <a href="#" class="btn btn-lg btn-primary btn-block">Ver Expedientes de Alumnos</a>
+            </div>
+        </div>
+        <div class="card text-center mb-4" style="width: 25rem;">
+            <div class="card-body">
+                <img src="../../static/img/subjects-info128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
+                <h5 class="card-title mt-3">Información de Materias</h5>
+                <p class="card-text">Aquí puedes acceder a todo lo relacionado a la Información de materias cursadas</p>
+                <a href="#" class="btn btn-lg btn-primary btn-block">Ver Materias Cursadas</a>
+            </div>
+        </div>
     </div>
 </div>
 
