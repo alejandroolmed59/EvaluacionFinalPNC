@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
