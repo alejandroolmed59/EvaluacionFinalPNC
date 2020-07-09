@@ -1,21 +1,18 @@
 package com.olmedo.evfinal.Services;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-import com.olmedo.evfinal.Repositories.UsuarioRepository;
-import com.olmedo.evfinal.domain.Usuario;
 
-public class UsuarioServiceIMP implements UsuarioService {
-	
-	@Autowired
-	UsuarioRepository usuarioRepository;
+@Service
+public class UsuarioServiceIMP implements UserDetailsService {
 
 	@Override
-	public void save(Usuario usuario) throws DataAccessException {
-		usuarioRepository.save(usuario);
-		
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 }

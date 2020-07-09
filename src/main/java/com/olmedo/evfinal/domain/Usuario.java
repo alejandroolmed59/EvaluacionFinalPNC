@@ -1,14 +1,17 @@
 package com.olmedo.evfinal.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+
+import java.util.Collection;
 import java.util.Date;
 
 
 @Entity
 @Table(schema = "public", name = "usuario")
-public class Usuario {
+public class Usuario{
     @Id
     @Column(name = "idusuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,7 +71,7 @@ public class Usuario {
         this.admin = admin;
     }
 
-    public int getIdUsuario() {
+	public int getIdUsuario() {
         return idUsuario;
     }
 
@@ -141,4 +144,9 @@ public class Usuario {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-}
+
+	public Collection<GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+		}
+	}

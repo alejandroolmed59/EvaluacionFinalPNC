@@ -36,11 +36,9 @@ public class UserController {
 	
 	@RequestMapping("/insertUser")
 	public ModelAndView newUser(Usuario usuario) {
-		List<Municipio> Municipios = municipioService.findAll();
 		ModelAndView mav = new ModelAndView();
 		usuarioRepository.save(usuario);
 		mav.addObject("usuario", new Usuario());
-		mav.addObject("municipio", Municipios);
 		mav.setViewName("Autenticacion/Registrarse");
 		return mav;
 	}
