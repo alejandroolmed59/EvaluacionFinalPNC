@@ -36,9 +36,9 @@ public class AdminController {
 
     @RequestMapping("/admin/Usuarios")
     public ModelAndView usuarios(){
-        if(1==1){
-            return new ModelAndView( "redirect:/login");
-        }
+      //  if(1==1){
+        //    return new ModelAndView( "redirect:/blank");
+        //}
         List<Usuario> listUsers = usuarioRepository.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuarios", listUsers);

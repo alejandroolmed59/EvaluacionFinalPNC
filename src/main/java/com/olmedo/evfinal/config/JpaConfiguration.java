@@ -63,7 +63,7 @@ public class JpaConfiguration {
 		
 		return dataSource;
 	}
-	
+   
 	Properties hibernateProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.show_sql", "true");
