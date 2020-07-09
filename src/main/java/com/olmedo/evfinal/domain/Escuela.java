@@ -1,6 +1,7 @@
 package com.olmedo.evfinal.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(schema = "public", name = "escuela")
@@ -10,13 +11,17 @@ public class Escuela {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEscuela;
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idmunicipio")
     private Municipio municipio;
 
+
+    @NotEmpty(message = "El campo nombre no puede estar vacio")
     @Column(name = "nombre")
     private String nombre;
 
+    @NotEmpty(message = "El campo descripcion no puede estar vacio")
     @Column(name = "descripcion")
     private String descripcion;
 

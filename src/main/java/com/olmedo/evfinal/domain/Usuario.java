@@ -3,7 +3,13 @@ package com.olmedo.evfinal.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -35,22 +41,29 @@ public class Usuario{
 		this.idUsuario = idUsuario;
 	}
 
+    @NotEmpty(message = "El campo nombre no puede estar vacio")
 	@Column(name = "nombre")
     private String nombre;
 
+    @NotEmpty(message = "El campo apellido no puede estar vacio")
     @Column(name = "apellido")
     private String apellido;
 
+    @NotEmpty(message = "El campo nombre usuario no puede estar vacio")
     @Column(name = "nombreusuario")
     private String nombreUsuario;
 
+    @NotNull(message = "El campo fecha no puede estar vacio")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fechanac")
     private Date fechaBD;
 
+
+    @NotEmpty(message = "El campo direccion no puede estar vacio")
     @Column(name = "direccion")
     private String direccion;
 
+    @NotEmpty(message = "El campo contrasennia no puede estar vacio")
     @Column(name = "contrasennia")
     private String contrasennia;
 
@@ -158,7 +171,19 @@ public class Usuario{
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
+
+    public String getEdadDelegate() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.fechaBD );
+        if (this.fechaBD == null) return "";
+        else {
+            LocalDate localFechaBD = LocalDateTime.ofInstant(cal.toInstant(), cal.getTimeZone().toZoneId()).toLocalDate();
+            int edad = Period.between(localFechaBD, LocalDate.now()).getYears();
+            return new Integer(edad).toString();
+        }
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

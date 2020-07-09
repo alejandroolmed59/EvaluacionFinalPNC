@@ -24,15 +24,18 @@
                         <div class="form-group col-md-6">
                             <label for="inputNombre">Nombre</label>
                             <input type="text" th:field="*{nombre}" class="form-control" id="inputNombre" placeholder="Nombre">
+                            <span th:errors="*{nombre}" style=color:#FF0000></span><br>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputApellido">Apellido</label>
                             <input type="text" th:field="*{apellido}" class="form-control" id="inputApellido" placeholder="Apellido">
+                            <span th:errors="*{apellido}" style=color:#FF0000></span><br>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputFechaNac">Fecha de nacimiento</label>
                         <input type="date" th:field="*{fechaBD}" class="form-control" id="inputFechaNac">
+                        <span th:errors="*{fechaBD}" style=color:#FF0000></span><br>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -52,15 +55,18 @@
                     <div class="form-group">
                         <label for="inputDireccion">Direccion</label>
                         <input type="text" th:field="*{direccion}" class="form-control" id="inputDireccion" placeholder="1234 Calle Principal St">
+                        <span th:errors="*{direccion}" style=color:#FF0000></span><br>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputUsuario">Usuario</label>
                             <input type="text" th:field="*{nombreUsuario}" class="form-control" id="inputUsuario" placeholder="Usuario">
+                            <span th:errors="*{nombreUsuario}" style=color:#FF0000></span><br>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputContraseña">Contraseña</label>
                             <input type="password" th:field="*{contrasennia}" class="form-control" id="inputContraseña" placeholder="*********">
+                            <span th:errors="*{contrasennia}" style=color:#FF0000></span><br>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputRol">State</label>
