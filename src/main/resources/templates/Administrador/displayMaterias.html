@@ -15,7 +15,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand mb-0 h1" href="#">
+    <a class="navbar-brand mb-0 h1" th:href="@{/admin/index}">
         <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
         Proyecto Capas
     </a>
@@ -26,16 +26,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" th:href="@{/admin/index}">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Centros Escolares</a>
+                <a class="nav-link" th:href="@{/admin/Escuelas}">Centros Escolares</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#">Materias </a>
+                <a class="nav-link active" th:href="@{/admin/Materias}">Materias </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Usuarios</a>
+                <a class="nav-link" th:href="@{/admin/Usuarios}">Usuarios</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,7 +49,7 @@
     </div>
 </nav>
 <div class="d-flex ml-5 mb-2 mt-2">
-    <img src="../../static/img/subjects128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
+    <img src="../../static/img/subjects128.png" width="90" height="90" class="d-inline-block align-top mr-2" alt="">
     <h1 class="mt-4 ml-2 mb-4">Administrar Materias</h1>
 </div>
 <button type="button" class="btn btn-success ml-5 mb-4 mt-2">

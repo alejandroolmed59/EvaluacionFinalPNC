@@ -12,7 +12,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand mb-0 h1" href="#">
+    <a class="navbar-brand mb-0 h1" th:href="@{/coordinador/index}">
         <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
         Proyecto Capas
     </a>
@@ -23,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Inicio</a>
+                <a class="nav-link active" th:href="@{/coordinador/index}">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Expediente de Alumnos</a>
+                <a class="nav-link" th:href="@{/coordinador/filtrar}">Expediente de Alumnos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Información de materias </a>
+                <a class="nav-link" th:href="@{/coordinador/index}">Información de materias </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +52,7 @@
                 <img src="../../static/img/students128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                 <h5 class="card-title mt-3">Expediente de Alumnos</h5>
                 <p class="card-text">Aquí puedes acceder a todo lo relacionado al expediente de los alumnos</p>
-                <a href="#" class="btn btn-lg btn-primary btn-block">Ver Expedientes de Alumnos</a>
+                <a th:href="@{/coordinador/filtrar}" class="btn btn-lg btn-primary btn-block">Ver Expedientes de Alumnos</a>
             </div>
         </div>
         <div class="card text-center mb-4" style="width: 25rem;">
@@ -60,7 +60,7 @@
                 <img src="../../static/img/subjects-info128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                 <h5 class="card-title mt-3">Información de Materias</h5>
                 <p class="card-text">Aquí puedes acceder a todo lo relacionado a la Información de materias cursadas</p>
-                <a href="#" class="btn btn-lg btn-primary btn-block">Ver Materias Cursadas</a>
+                <a th:href="@{/coordinador/index}" class="btn btn-lg btn-primary btn-block">Ver Materias Cursadas</a>
             </div>
         </div>
     </div>
