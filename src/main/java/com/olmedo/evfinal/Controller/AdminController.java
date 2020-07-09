@@ -42,7 +42,7 @@ public class AdminController {
         List<Usuario> listUsers = usuarioRepository.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuarios", listUsers);
-        mav.setViewName("displayUsuarios");
+        mav.setViewName("Administrador/displayUsuarios");
         return mav;
     }
 
@@ -52,7 +52,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuario", new Usuario());
         mav.addObject("municipios", listaMunicipios);
-        mav.setViewName("editUsuario");
+        mav.setViewName("Administrador/editUsuario");
         return mav;
     }
 
@@ -64,7 +64,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuario", user);
         mav.addObject("municipios", listaMunicipios);
-        mav.setViewName("editUsuario");
+        mav.setViewName("Administrador/editUsuario");
         return mav;
     }
 
@@ -73,7 +73,7 @@ public class AdminController {
         List<Escuela> listEscuelas = escuelaRepository.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("escuelas", listEscuelas);
-        mav.setViewName("displayEscuelas");
+        mav.setViewName("Administrador/displayEscuelas");
         return mav;
     }
 
@@ -83,7 +83,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("escuela", new Escuela());
         mav.addObject("municipios", listaMunicipios);
-        mav.setViewName("editEscuela");
+        mav.setViewName("Administrador/editEscuela");
         return mav;
     }
 
@@ -94,7 +94,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("escuela", escuela);
         mav.addObject("municipios", listaMunicipios);
-        mav.setViewName("editEscuela");
+        mav.setViewName("Administrador/editEscuela");
         return mav;
     }
 
@@ -104,14 +104,14 @@ public class AdminController {
         List<Materia> listaMaterias = materiaRepository.findAllOrdenado();
         ModelAndView mav = new ModelAndView();
         mav.addObject("materias", listaMaterias);
-        mav.setViewName("displayMaterias");
+        mav.setViewName("Administrador/displayMaterias");
         return mav;
     }
     @RequestMapping("/admin/editMaterias")
     public ModelAndView nuevaMateria(){
         ModelAndView mav = new ModelAndView();
         mav.addObject("materia", new Materia());
-        mav.setViewName("editMateria");
+        mav.setViewName("Administrador/editMateria");
         return mav;
     }
 
@@ -121,7 +121,7 @@ public class AdminController {
         Materia materia = materiaRepository.getOne(idMateria);
         ModelAndView mav = new ModelAndView();
         mav.addObject("materia", materia);
-        mav.setViewName("editMateria");
+        mav.setViewName("Administrador/editMateria");
         return mav;
     }
 
