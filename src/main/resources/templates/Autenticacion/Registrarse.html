@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Registrate</title>
 </head>
 <body style="background-color: #f5f5f5">
@@ -24,15 +24,18 @@
                         <div class="form-group col-md-6">
                             <label for="inputNombre">Nombre</label>
                             <input type="text" th:field="*{nombre}" class="form-control" id="inputNombre" placeholder="Nombre">
+                            <span th:errors="*{nombre}" style=color:#FF0000></span><br>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputApellido">Apellido</label>
                             <input type="text" th:field="*{apellido}" class="form-control" id="inputApellido" placeholder="Apellido">
+                            <span th:errors="*{apellido}" style=color:#FF0000></span><br>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputFechaNac">Fecha de nacimiento</label>
                         <input type="date" th:field="*{fechaBD}" class="form-control" id="inputFechaNac">
+                        <span th:errors="*{fechaBD}" style=color:#FF0000></span><br>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -52,15 +55,18 @@
                     <div class="form-group">
                         <label for="inputDireccion">Direccion</label>
                         <input type="text" th:field="*{direccion}" class="form-control" id="inputDireccion" placeholder="1234 Calle Principal St">
+                        <span th:errors="*{direccion}" style=color:#FF0000></span><br>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputUsuario">Usuario</label>
                             <input type="text" th:field="*{nombreUsuario}" class="form-control" id="inputUsuario" placeholder="Usuario">
+                            <span th:errors="*{nombreUsuario}" style=color:#FF0000></span><br>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputContraseña">Contraseña</label>
                             <input type="password" th:field="*{contrasennia}" class="form-control" id="inputContraseña" placeholder="*********">
+                            <span th:errors="*{contrasennia}" style=color:#FF0000></span><br>
                         </div>
                     </div>
                     <button class="btn btn-lg btn-success btn-block mt-4" type="submit">Registrar</button>

@@ -34,6 +34,13 @@ public class AdminController {
     private UsuarioRepository usuarioRepository;
 
 
+    @RequestMapping("/admin/index")
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("Administrador/index");
+        return mav;
+    }
+
     @RequestMapping("/admin/Usuarios")
     public ModelAndView usuarios(){
       //  if(1==1){

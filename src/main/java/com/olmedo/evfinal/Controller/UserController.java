@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +16,8 @@ import com.olmedo.evfinal.Repositories.UsuarioRepository;
 import com.olmedo.evfinal.Services.MunicipioService;
 import com.olmedo.evfinal.domain.Municipio;
 import com.olmedo.evfinal.domain.Usuario;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -53,13 +57,34 @@ public class UserController {
 		mav.setViewName("Autenticacion/Administrador");
 		return mav;
 	}
-	
+/*
 	@RequestMapping("/insertUser")
 	public ModelAndView newUser(Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
 		usuarioRepository.save(usuario);
 		mav.addObject("usuario", new Usuario());
 		mav.setViewName("Autenticacion/Login");
+		return mav;
+	}
+
+*/
+	@RequestMapping("/insertUser")
+	public ModelAndView insertarLibro(@Valid @ModelAttribute Usuario usuario, BindingResult result){
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			List<Municipio> Municipios = municipioService.findAll();
+			mav.addObject("municipio", Municipios);
+			mav.setViewName("Autenticacion/Registrarse");
+		}
+		else{
+			try {
+				usuarioRepository.save(usuario);
+				mav.addObject("usuario", new Usuario());
+				mav.setViewName("Autenticacion/Registrarse");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return mav;
 	}
 	

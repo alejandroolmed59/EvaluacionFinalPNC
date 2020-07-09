@@ -33,6 +33,13 @@ public class CoordinadorController {
     @Autowired
     MateriaRepository materiaRepository;
 
+    @RequestMapping("/coordinador/index")
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/Coordinador/index");
+        return mav;
+    }
+
     @RequestMapping("/coordinador/filtrar")
     public ModelAndView coordinadorInicio(){
         ModelAndView mav = new ModelAndView();
