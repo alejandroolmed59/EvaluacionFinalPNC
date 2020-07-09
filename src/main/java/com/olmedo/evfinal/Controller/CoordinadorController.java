@@ -7,6 +7,7 @@ import com.olmedo.evfinal.Repositories.MateriaRepository;
 import com.olmedo.evfinal.Services.ExpedienteService;
 import com.olmedo.evfinal.ViewModels.ExpedienteMateriaClase;
 import com.olmedo.evfinal.ViewModels.ExpedienteXmateria;
+import com.olmedo.evfinal.ViewModels.NotasAlumno;
 import com.olmedo.evfinal.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,7 +33,7 @@ public class CoordinadorController {
     @Autowired
     MateriaRepository materiaRepository;
 
-    @RequestMapping("/coordinador/inicio")
+    @RequestMapping("/coordinador/filtrar")
     public ModelAndView coordinadorInicio(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/Coordinador/BuscarExpediente");
@@ -82,6 +84,23 @@ public class CoordinadorController {
         return mav;
     }
 
+    @RequestMapping("/coordinador/materiascursadas")
+    public ModelAndView MateriasCursadas() throws ParseException {
+        List<Expediente> expedienteList = expedienteService.findAll();
+        List<NotasAlumno> vistaAlumnos = new ArrayList<>();
+        for (Expediente alumno:expedienteList) {
+            NotasAlumno alumnoVista = expedienteService.getResultados(alumno.getIdExpediente());
+            alumnoVista.setApellido(alumno.getApellido());
+            alumnoVista.setNombre(alumno.getNombre());
+            alumnoVista.setIdExpediente(alumno.getIdExpediente());
+            vistaAlumnos.add(alumnoVista);
+        }
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("expedientes", vistaAlumnos);
+        mav.setViewName("/Coordinador/displayExpedienteFiltrado");
+        return mav;
+    }
+
     //POSTS
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(Expediente expediente) throws ParseException {
@@ -92,8 +111,16 @@ public class CoordinadorController {
     @PostMapping("/coordinador/post/filtrarExpedientes")
     public ModelAndView filtrarExp(@RequestParam Integer tipo, @RequestParam String valor) throws ParseException {
         List<Expediente> expedienteList = expedienteService.getByQuery(tipo, valor);
+        List<NotasAlumno> vistaAlumnos = new ArrayList<>();
+        for (Expediente alumno:expedienteList) {
+            NotasAlumno alumnoVista = expedienteService.getResultados(alumno.getIdExpediente());
+            alumnoVista.setApellido(alumno.getApellido());
+            alumnoVista.setNombre(alumno.getNombre());
+            alumnoVista.setIdExpediente(alumno.getIdExpediente());
+            vistaAlumnos.add(alumnoVista);
+        }
         ModelAndView mav = new ModelAndView();
-        mav.addObject("expedientes", expedienteList);
+        mav.addObject("expedientes", vistaAlumnos);
         mav.setViewName("/Coordinador/displayExpedienteFiltrado");
         return mav;
     }
@@ -104,7 +131,6 @@ public class CoordinadorController {
         }catch(Exception e){
             return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
         }
-
         return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
     }
 }
