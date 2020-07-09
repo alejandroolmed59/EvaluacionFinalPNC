@@ -1,164 +1,190 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Educational registration form</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <style>
-        html, body {
-            min-height: 100%;
-        }
-        body, div, form, input, select, p {
-            padding: 0;
-            margin: 0;
-            outline: none;
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 16px;
-            color: #eee;
-        }
-        body {
-            background: url("/uploads/media/default/0001/01/b5edc1bad4dc8c20291c8394527cb2c5b43ee13c.jpeg") no-repeat center;
-            background-size: cover;
-        }
-        h1, h2 {
-            text-transform: uppercase;
-            font-weight: 400;
-        }
-        h2 {
-            margin: 0 0 0 8px;
-        }
-        .main-block {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .left-part, form {
-            padding: 25px;
-        }
-        .left-part {
-            text-align: center;
-        }
-        .fa-graduation-cap {
-            font-size: 72px;
-        }
-        form {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .info {
-            display: flex;
-            flex-direction: column;
-        }
-        input, select {
-            padding: 5px;
-            margin-bottom: 30px;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #eee;
-        }
-        input::placeholder {
-            color: #eee;
-        }
-        option:focus {
-            border: none;
-        }
-        option {
-            background: black;
-            border: none;
-        }
-        .checkbox input {
-            margin: 0 10px 0 0;
-            vertical-align: middle;
-        }
-        .checkbox a {
-            color: #26a9e0;
-        }
-        .checkbox a:hover {
-            color: #85d6de;
-        }
-        .btn-item, button {
-            padding: 10px 5px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border: none;
-            background: #26a9e0;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 400;
-            color: #fff;
-        }
-        .btn-item {
-            display: inline-block;
-            margin: 20px 5px 0;
-        }
-        button {
-            width: 100%;
-        }
-        button:hover, .btn-item:hover {
-            background: #85d6de;
-        }
-        @media (min-width: 568px) {
-            html, body {
-                height: 100%;
-            }
-            .main-block {
-                flex-direction: row;
-                height: calc(100% - 50px);
-            }
-            .left-part, form {
-                flex: 1;
-                height: auto;
-            }
-        }
-    </style>
+    <title>Editar Expediente</title>
 </head>
-<body>
-<div class="main-block">
-    <div class="left-part">
-        <i class="fas fa-graduation-cap"></i>
-        <h1>Coordinador Expediente</h1>
 
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand mb-0 h1" href="#">
+        <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
+        Proyecto Capas
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Expediente de Alumnos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Información de materias </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Perfil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                </div>
+            </li>
+        </ul>
     </div>
-    <form th:action="@{/coordinador/post/editExpediente}" th:object="${expediente}" method="post">
-        <div class="title">
-            <i class="fas fa-pencil-alt"></i>
-            <h2>Centro escolar</h2>
-        </div>
-        <div class="info">
-            <input hidden th:field="*{idExpediente}">
-            <input class="fname" type="text" th:field="*{nombre}" name="name" placeholder="Nombres">
-            <input class="fname" type="text" th:field="*{apellido}" name="apellido" placeholder="Apellidos">
-            <input type="text" name="car" th:field="*{carnetMinoridad}"  placeholder="Carnet de minoridad">
-            <input type="text" name="dir" th:field="*{direccion}"  placeholder="Direccion">
-            <input type="text" name="tf" th:field="*{telfijo}"  placeholder="Telefono fijo">
-            <input type="text" name="tm" th:field="*{telmovil}"  placeholder="Telefono movil">
-            <input type="text" name="np" th:field="*{nombrepadre}"  placeholder="Nombre padre">
-            <input type="text" name="nm" th:field="*{nombremadre}"  placeholder="Nombre madre">
-            <select th:field="*{escuela.idEscuela}" >
-                <option th:each="es: ${escuelas}"  th:value="${es.idEscuela}" th:text="${es.nombre}"></option>
-            </select>
-        </div>
-        <div>
-            <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaNac}" >
-        </div>
-        <button type="submit">Submit</button>
-        <a th:if="${flag}" class="btn btn-info" th:href="@{/coordinador/editExpediente}">
-            Limpiar
-        </a>
-        <a class="btn btn-danger" th:href="@{/coordinador/inicio}">
-            Regresar
-        </a>
-    </form>
+</nav>
+<div class="d-flex ml-5 mb-2 mt-2">
+    <img src="../../static/img/editRecord128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
+    <h1 class="mt-4 ml-2 mb-4">Editar Expediente</h1>
 </div>
+<div class="container-fluid mt-4">
+    <div class="d-flex flex-column">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-pencil-alt"></i>
+                Información de Expediente
+            </div>
+
+            <div class="card-body col-md-7">
+                <form th:action="@{/coordinador/post/editExpediente}" th:object="${expediente}" method="post">
+                    <input hidden th:field="*{idExpediente}">
+                    <div class="form-group row">
+                        <div class="col-sm-3">Nombres: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{nombre}" name="name" placeholder="Nombres">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Apellidos: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{apellido}" name="apellido" placeholder="Apellidos" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Carné de minoridad: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="car" th:field="*{carnetMinoridad}"  placeholder="Carnet de minoridad">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Fecha de Nacimiento: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaNac}" placeholder="dd/mm/aaaa">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Dirección: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="dir" th:field="*{direccion}"  placeholder="Direccion">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Teléfono fijo: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="tf" th:field="*{telfijo}"  placeholder="Telefono fijo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Teléfono móvil: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="tm" th:field="*{telmovil}"  placeholder="Telefono movil">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Escuela: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <select th:field="*{escuela.idEscuela}"  class="form-control">
+                                    <option th:each="es: ${escuelas}"  th:value="${es.idEscuela}" th:text="${es.nombre}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Nombre del padre: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="np" th:field="*{nombrepadre}"  placeholder="Nombre padre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Nombre de la Madre: </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nm" th:field="*{nombremadre}"  placeholder="Nombre madre">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-4">
+                        <i class="fas fa-save"></i>
+                        Guardar
+                    </button>
+                    <button type="button" class="btn btn-danger mr-4" th:if="${flag}" class="btn btn-info" th:href="@{/coordinador/editExpediente}">
+                        <i class="fas fa-trash-alt"></i>
+                        Limpiar
+                    </button>
+                    <button type="button" class="btn btn-secondary" th:href="@{/coordinador/inicio}">
+                        Regresar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal Cerrar Sesion -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cerrar Sesión</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Est&aacute; seguro de salir del sistema?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>

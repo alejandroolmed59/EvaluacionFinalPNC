@@ -1,151 +1,125 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Educational registration form</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style>
-        html, body {
-            min-height: 100%;
-        }
-        body, div, form, input, select, p {
-            padding: 0;
-            margin: 0;
-            outline: none;
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 16px;
-            color: #eee;
-        }
-        body {
-            background: url("/uploads/media/default/0001/01/b5edc1bad4dc8c20291c8394527cb2c5b43ee13c.jpeg") no-repeat center;
-            background-size: cover;
-        }
-        h1, h2 {
-            text-transform: uppercase;
-            font-weight: 400;
-        }
-        h2 {
-            margin: 0 0 0 8px;
-        }
-        .main-block {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .left-part, form {
-            padding: 25px;
-        }
-        .left-part {
-            text-align: center;
-        }
-        .fa-graduation-cap {
-            font-size: 72px;
-        }
-        form {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .title {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .info {
-            display: flex;
-            flex-direction: column;
-        }
-        input, select {
-            padding: 5px;
-            margin-bottom: 30px;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #eee;
-        }
-        input::placeholder {
-            color: #eee;
-        }
-        option:focus {
-            border: none;
-        }
-        option {
-            background: black;
-            border: none;
-        }
-        .checkbox input {
-            margin: 0 10px 0 0;
-            vertical-align: middle;
-        }
-        .checkbox a {
-            color: #26a9e0;
-        }
-        .checkbox a:hover {
-            color: #85d6de;
-        }
-        .btn-item, button {
-            padding: 10px 5px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border: none;
-            background: #26a9e0;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 400;
-            color: #fff;
-        }
-        .btn-item {
-            display: inline-block;
-            margin: 20px 5px 0;
-        }
-        button {
-            width: 100%;
-        }
-        button:hover, .btn-item:hover {
-            background: #85d6de;
-        }
-        @media (min-width: 568px) {
-            html, body {
-                height: 100%;
-            }
-            .main-block {
-                flex-direction: row;
-                height: calc(100% - 50px);
-            }
-            .left-part, form {
-                flex: 1;
-                height: auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Expediente de Alumno - Inicio</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand mb-0 h1" href="#">
+        <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
+        Proyecto Capas
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div class="main-block">
-    <div >
-        <i class="fas fa-graduation-cap"></i>
-        <h1>Expedientes de alumnos - Pantalla inicial</h1>
-        <form method="post" th:action="@{/coordinador/post/filtrarExpedientes}" target="_blank">
-            <div class="form-group">
-                <select class="form-control" name="tipo">
-                    <option value="1">Filtrar por Nombre</option>
-                    <option value="2">Filtrar por apellido</option>
-                </select>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Expediente de Alumnos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Información de materias </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Perfil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="d-flex ml-5 mb-2 mt-2">
+    <img src="../../static/img/student128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
+    <h1 class="mt-4 ml-2 mb-4">Expediente de Alumno - Pantalla Inicial</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="d-flex flex-column">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-filter"></i>
+                Filtrar Alumno
             </div>
-            <div class="form-group">
-                <input class="form-control py-4" id="valor" type="text"
-                       style="width: 400px" name="valor" />
+
+            <div class="card-body col-md-7">
+                <form method="post" th:action="@{/coordinador/post/filtrarExpedientes}" target="_blank">
+                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" onclick="location.href='./displayEscuelas'" />
+                    <div class="form-group row">
+                        <div class="col-sm-3">Buscar Alumno Por: </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <select class="form-control" name="tipo">
+                                    <option value="1">Filtrar por Nombre</option>
+                                    <option value="2">Filtrar por Apellido</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">Valor de búsqueda: </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input class="form-control" id="valor" type="text" name="valor" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" th:href="@{/coordinador/editExpediente}">
+                        <i class="fas fa-plus"></i>
+                        Agregar Nuevo Expediente
+                    </button>
+                </form>
             </div>
-            <input type="submit" class="btn btn-primary" value="Buscar Clientes">
-        </form>
-        <div>
-            <a class="btn btn-success" th:href="@{/coordinador/editExpediente}">
-                <p>+ Agregar Nuevo Expepediente</p>
-            </a>
         </div>
     </div>
 </div>
+
+    <!-- Modal Cerrar Sesion -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Cerrar Sesión</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Est&aacute; seguro de salir del sistema?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Salir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
