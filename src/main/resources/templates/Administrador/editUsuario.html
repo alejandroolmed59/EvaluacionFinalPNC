@@ -42,7 +42,7 @@
                     Perfil
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
-                    <a class="dropdown-item" href="/cerrarSesion">Cerrar Sesión</a>
+                    <a class="dropdown-item">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
@@ -63,7 +63,7 @@
             <div class="card-body col-md-6">
                 <form th:action="@{/admin/post/editUsuario}" th:object="${usuario}" method="post">
                     <input hidden th:field="*{idUsuario}">
-                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" th:href="@{/admin/index}" />
+                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" onclick="location.href='/admin/Usuarios'" />
                     <div class="form-group row">
                         <div class="col-sm-3">Usuario: </div>
                         <div class="col-sm-9">
@@ -170,7 +170,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salir</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='/cerrarSesion'">Salir</button>
             </div>
         </div>
     </div>
