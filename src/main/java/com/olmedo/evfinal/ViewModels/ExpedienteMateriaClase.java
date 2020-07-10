@@ -1,6 +1,7 @@
 package com.olmedo.evfinal.ViewModels;
 
 public class ExpedienteMateriaClase {
+    private int id;
     private int idexpediente;
     private int idmateria;
     private String ciclo;
@@ -12,6 +13,19 @@ public class ExpedienteMateriaClase {
 
     public ExpedienteMateriaClase(int idexpediente) {
         this.idexpediente = idexpediente;
+    }
+
+    public ExpedienteMateriaClase(int id, int idmateria) {
+        this.id = id;
+        this.idmateria = idmateria;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdexpediente() {

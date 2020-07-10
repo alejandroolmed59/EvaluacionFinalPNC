@@ -78,6 +78,17 @@ public class CoordinadorController {
         mav.setViewName("/Coordinador/displayMateriasCursadas");
         return mav;
     }
+
+    @RequestMapping("/coordinador/editMateria/id/{id}")
+    public ModelAndView editmateriasCursadas(@PathVariable("id") int id){
+        System.out.println(id);
+        List<Materia> materias = materiaRepository.findAllOrdenado();
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("materias", materias);
+        mav.addObject("modelo", new ExpedienteMateriaClase(id, 1));
+        mav.setViewName("/Coordinador/editMateriaCursada");
+        return mav;
+    }
     @RequestMapping("/coordinador/nueva/Materia/id/{idExpediente}")
     public ModelAndView nuevaMateriaCursada(@PathVariable("idExpediente") int idExpediente){
         Expediente ex = expedienteRepository.getOne(idExpediente);
@@ -112,7 +123,7 @@ public class CoordinadorController {
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(Expediente expediente) throws ParseException {
         expedienteRepository.save(expediente);
-        return new RedirectView("/coordinador/inicio");
+        return new RedirectView("/coordinador/index");
     }
 
     @PostMapping("/coordinador/post/filtrarExpedientes")
@@ -139,5 +150,14 @@ public class CoordinadorController {
             return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
         }
         return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
+    }
+    @PostMapping("/coordinador/post/edit/Materia")
+    public RedirectView editMateria(ExpedienteMateriaClase emc)  {
+        try{
+            expedienteRepository.editMateria( emc.getIdmateria(), emc.getCiclo(), emc.getAnnio(), emc.getNota(), emc.getId());
+        }catch(Exception e){
+            return new RedirectView("/coordinador/materiascursadas/");
+        }
+        return new RedirectView("/coordinador/materiascursadas/");
     }
 }

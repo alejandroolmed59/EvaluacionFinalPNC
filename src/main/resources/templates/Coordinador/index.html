@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand mb-0 h1" th:href="@{/coordinador/index}">
-        <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
+        <img src="/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
         Proyecto Capas
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="card text-center mb-4" style="width: 25rem;">
             <div class="card-body">
-                <img src="../../static/img/students128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
+                <img src="/img/students128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                 <h5 class="card-title mt-3">Expediente de Alumnos</h5>
                 <p class="card-text">Aquí puedes acceder a todo lo relacionado al expediente de los alumnos</p>
                 <a th:href="@{/coordinador/filtrar}" class="btn btn-lg btn-primary btn-block">Ver Expedientes de Alumnos</a>
@@ -57,10 +57,10 @@
         </div>
         <div class="card text-center mb-4" style="width: 25rem;">
             <div class="card-body">
-                <img src="../../static/img/subjects-info128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
+                <img src="/img/subjects-info128.png" alt="Imagen escuela" style="width: 75px; height: 75px">
                 <h5 class="card-title mt-3">Información de Materias</h5>
                 <p class="card-text">Aquí puedes acceder a todo lo relacionado a la Información de materias cursadas</p>
-                <a th:href="@{/coordinador/index}" class="btn btn-lg btn-primary btn-block">Ver Materias Cursadas</a>
+                <a th:href="@{/coordinador/materiascursadas}" class="btn btn-lg btn-primary btn-block">Ver Materias Cursadas</a>
             </div>
         </div>
     </div>

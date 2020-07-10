@@ -70,7 +70,7 @@
             <th:block th:each="materia, row:${materias}">
                 <tr>
                     <th scope="row" style="text-align: center">
-                        <a class="btn btn-warning">
+                        <a class="btn btn-warning" th:href="@{/coordinador/editMateria/id/}+${{materia.id}}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                     </th>
