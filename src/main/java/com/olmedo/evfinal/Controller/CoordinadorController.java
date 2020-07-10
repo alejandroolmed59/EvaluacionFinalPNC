@@ -12,13 +12,12 @@ import com.olmedo.evfinal.config.Sesion;
 import com.olmedo.evfinal.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +153,7 @@ public class CoordinadorController {
     }
 
     //POSTS
+    /*
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(Expediente expediente) throws ParseException {
         System.out.println(expediente.getEdad1Delegate());
@@ -161,7 +161,21 @@ public class CoordinadorController {
         expedienteRepository.save(expediente);
         return new RedirectView("/coordinador/index");
     }
+    */
 
+    @PostMapping("/coordinador/post/editExpediente")
+    public RedirectView postExpediente(@Valid @ModelAttribute("expediente") Expediente expediente, BindingResult result){
+        if(result.hasErrors()) {
+            return new RedirectView("redirect:/coordinador/editExpediente");
+        }
+        else{
+            System.out.println(expediente.getEdad1Delegate());
+            expediente.setEdad(expediente.getEdad1Delegate());
+            expedienteRepository.save(expediente);
+            return new RedirectView("/coordinador/index");
+        }
+
+    }
     @PostMapping("/coordinador/post/filtrarExpedientes")
     public ModelAndView filtrarExp(@RequestParam Integer tipo, @RequestParam String valor) throws ParseException {
         List<Expediente> expedienteList = expedienteService.getByQuery(tipo, valor);
@@ -179,6 +193,7 @@ public class CoordinadorController {
         mav.setViewName("/Coordinador/displayExpedienteFiltrado");
         return mav;
     }
+
     @PostMapping("/coordinador/post/nueva/Materia")
     public RedirectView filtrarExp(ExpedienteMateriaClase emc)  {
         try{
@@ -188,6 +203,10 @@ public class CoordinadorController {
         }
         return new RedirectView("/coordinador/Materias/id/"+emc.getIdexpediente());
     }
+
+
+
+
     @PostMapping("/coordinador/post/edit/Materia")
     public RedirectView editMateria(ExpedienteMateriaClase emc)  {
         System.out.println(emc.getIdmateria()+" "+ emc.getIdmateria()+" "+emc.getId());
@@ -198,4 +217,6 @@ public class CoordinadorController {
         }
         return new RedirectView("/coordinador/materiascursadas/");
     }
+
+
 }

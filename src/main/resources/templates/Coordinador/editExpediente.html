@@ -65,6 +65,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" th:field="*{nombre}" name="name" placeholder="Nombres">
+                                <span th:errors="*{nombre}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -73,6 +74,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" th:field="*{apellido}" name="apellido" placeholder="Apellidos" >
+                                <span th:errors="*{apellido}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -81,6 +83,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="car" th:field="*{carnetMinoridad}"  placeholder="Carnet de minoridad">
+                                <span th:errors="*{carnetMinoridad}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -89,6 +92,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaNac}" placeholder="dd/mm/aaaa">
+                                <span th:errors="*{fechaNac}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -97,6 +101,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="dir" th:field="*{direccion}"  placeholder="Direccion">
+                                <span th:errors="*{direccion}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -105,6 +110,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="tf" th:field="*{telfijo}"  placeholder="Telefono fijo">
+                                <span th:errors="*{telfijo}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -113,6 +119,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="tm" th:field="*{telmovil}"  placeholder="Telefono movil">
+                                <span th:errors="*{telmovil}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -132,6 +139,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="np" th:field="*{nombrepadre}"  placeholder="Nombre padre">
+                                <span th:errors="*{nombrepadre}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -140,6 +148,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="nm" th:field="*{nombremadre}"  placeholder="Nombre madre">
+                                <span th:errors="*{nombremadre}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
