@@ -48,7 +48,7 @@
                         <div class="form-group col-md-6">
                             <label for="inputMunicipio">Municipio</label>
                             <select id="inputMunicipio" th:field="*{municipio.idMunicipio}" class="form-control">
-                                <option th:each="m: ${municipios}" th:value="${m.idMunicipio}" th:text="${m.nombreMunicipio}"></option>
+                                <option th:each="m: ${municipio}" th:value="${m.idMunicipio}" th:text="${m.nombreMunicipio}"></option>
                             </select>
                         </div>
                     </div>
