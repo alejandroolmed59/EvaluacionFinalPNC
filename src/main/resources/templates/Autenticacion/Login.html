@@ -47,6 +47,9 @@
         <div th:if="${error2}" class="alert alert-danger" role="alert">
           La cuenta esta deshabilitada, ponerse en contacto con el admin
         </div>
+        <div th:if="${error3}" class="alert alert-danger" role="alert">
+          Ya has iniciado sesión en otro dispositivo, cierra sesión en ellos para poder ingresar
+        </div>
         <div th:if="${param.logout}" class="alert alert-success" role="alert">
         	You have been logged out.
         </div>
