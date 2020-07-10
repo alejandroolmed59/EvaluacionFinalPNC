@@ -4,6 +4,7 @@ import com.olmedo.evfinal.Repositories.EscuelaRepository;
 import com.olmedo.evfinal.Repositories.MateriaRepository;
 import com.olmedo.evfinal.Repositories.UsuarioRepository;
 import com.olmedo.evfinal.Services.MunicipioService;
+import com.olmedo.evfinal.config.Sesion;
 import com.olmedo.evfinal.domain.Escuela;
 import com.olmedo.evfinal.domain.Materia;
 import com.olmedo.evfinal.domain.Municipio;
@@ -36,6 +37,10 @@ public class AdminController {
 
     @RequestMapping("/admin/index")
     public ModelAndView index() {
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Administrador/index");
         return mav;
@@ -43,9 +48,10 @@ public class AdminController {
 
     @RequestMapping("/admin/Usuarios")
     public ModelAndView usuarios(){
-      //  if(1==1){
-        //    return new ModelAndView( "redirect:/blank");
-        //}
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Usuario> listUsers = usuarioRepository.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuarios", listUsers);
@@ -55,6 +61,10 @@ public class AdminController {
 
     @RequestMapping("/admin/editUsuario")
     public ModelAndView nuevoUsuario(){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Municipio> listaMunicipios = municipioService.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("usuario", new Usuario());
@@ -65,7 +75,10 @@ public class AdminController {
 
     @RequestMapping("/admin/editUsuario/id/{idUsuario}")
     public ModelAndView editUsuario(@PathVariable("idUsuario") int idUsuario){
-
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         Usuario user = usuarioRepository.getOne(idUsuario);
         List<Municipio> listaMunicipios = municipioService.findAll();
         ModelAndView mav = new ModelAndView();
@@ -77,6 +90,10 @@ public class AdminController {
 
     @RequestMapping("/admin/Escuelas")
     public ModelAndView escuelas(){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Escuela> listEscuelas = escuelaRepository.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("escuelas", listEscuelas);
@@ -86,6 +103,10 @@ public class AdminController {
 
     @RequestMapping("/admin/editEscuela")
     public ModelAndView nuevaEscuela(){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Municipio> listaMunicipios = municipioService.findAll();
         ModelAndView mav = new ModelAndView();
         mav.addObject("escuela", new Escuela());
@@ -96,6 +117,10 @@ public class AdminController {
 
     @RequestMapping("/admin/editEscuela/id/{idEscuela}")
     public ModelAndView editEscuela(@PathVariable("idEscuela") int idEscuela){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         Escuela escuela = escuelaRepository.getOne(idEscuela);
         List<Municipio> listaMunicipios = municipioService.findAll();
         ModelAndView mav = new ModelAndView();
@@ -108,6 +133,10 @@ public class AdminController {
 
     @RequestMapping("/admin/Materias")
     public ModelAndView materias(){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Materia> listaMaterias = materiaRepository.findAllOrdenado();
         ModelAndView mav = new ModelAndView();
         mav.addObject("materias", listaMaterias);
@@ -116,6 +145,10 @@ public class AdminController {
     }
     @RequestMapping("/admin/editMaterias")
     public ModelAndView nuevaMateria(){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         ModelAndView mav = new ModelAndView();
         mav.addObject("materia", new Materia());
         mav.setViewName("Administrador/editMateria");
@@ -124,6 +157,10 @@ public class AdminController {
 
     @RequestMapping("/admin/editMaterias/id/{idMateria}")
     public ModelAndView editmateria(@PathVariable("idMateria") int idMateria){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         System.out.println(idMateria);
         Materia materia = materiaRepository.getOne(idMateria);
         ModelAndView mav = new ModelAndView();
@@ -153,13 +190,4 @@ public class AdminController {
     }
 
 
-    //OTROS METODOS
-    /*public int obtenerEdad(Date fecha){
-        LocalDate currentDate = new LocalDate(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
-        if ((fecha != null) && (currentDate != null)) {
-            return Period.between(fecha, currentDate).getYears();
-        } else {
-            return 0;
-        }
-    }*/
 }

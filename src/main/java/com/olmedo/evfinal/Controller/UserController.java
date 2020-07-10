@@ -44,7 +44,7 @@ public class UserController {
 		Usuario user = usuarioRepository.findByNombreUsuarioAndContrasennia(usuario.getNombreUsuario(), usuario.getContrasennia());
 		if(user!=null){
 			if(user.isEstado()){
-				Sesion sesion = Sesion.getSesion(user);
+				Sesion sesion = Sesion.setSesion(user);
 				if(sesion.getUsuario().isAdmin())  return new ModelAndView( "redirect:/admin/index");
 				else return new ModelAndView( "redirect:/coordinador/index");
 			}else{
@@ -56,6 +56,11 @@ public class UserController {
 
 		mav.setViewName("Autenticacion/Login");
 		return mav;
+	}
+	@RequestMapping("/cerrarSesion")
+	public ModelAndView cerrarSesion() {
+		Sesion sesion = Sesion.setSesion(null);
+		return new ModelAndView( "redirect:/login");
 	}
 	
 	@RequestMapping("/Coordinador")
