@@ -34,7 +34,7 @@ public class Expediente {
     private String carnetMinoridad;
 
     @NotNull(message = "El campo fecha no puede estar vacio")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "fechanacimiento")
     private Date fechaNac;
 

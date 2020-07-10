@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -42,7 +43,7 @@ public class Usuario{
     private String nombreUsuario;
 
     @NotNull(message = "El campo fecha no puede estar vacio")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "fechanac")
     private Date fechaBD;
 
@@ -170,6 +171,11 @@ public class Usuario{
         this.nombreUsuario = nombreUsuario;
     }
 
+
+    public String getFechaNacimientoDelegate() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.format(fechaBD);
+    }
 
     public String getEdad1Delegate() {
         Calendar cal = Calendar.getInstance();

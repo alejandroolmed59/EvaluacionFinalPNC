@@ -1,0 +1,22 @@
+Al haberse creado una cuenta, la cuenta es automaticamente puesta desactivada, 
+para activarla  un usuario admin debe activarla manualmente. Esto por seguridad.
+
+Puerto de postgres: 		5432
+Nombre de la Base de Datos: 	proyecto
+Nombre del BackUp: 		proyecto
+Nombre del script: 		proyecto.sql
+
+La ruta principal es: http://localhost:8080/login o http://localhost:8080/
+
+
+----------Credenciales----------
+
+-----Administrador-----
+
+usuario:root
+constraseña:root
+
+
+-----Coordinador-----
+usuario:coordinador1
+constraseña:1
