@@ -121,6 +121,8 @@ public class CoordinadorController {
     //POSTS
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(Expediente expediente) throws ParseException {
+        System.out.println(expediente.getEdad1Delegate());
+        expediente.setEdad(expediente.getEdad1Delegate());
         expedienteRepository.save(expediente);
         return new RedirectView("/coordinador/index");
     }

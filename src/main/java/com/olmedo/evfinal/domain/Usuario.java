@@ -4,6 +4,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -41,6 +45,10 @@ public class Usuario{
     @Column(name = "contrasennia")
     private String contrasennia;
 
+    @Column(name = "edad")
+    private String edad;
+
+
     @Column(name = "estado")
     private boolean estado;
 
@@ -57,6 +65,14 @@ public class Usuario{
     }
 
     public Usuario() {
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
     }
 
     public Usuario(int idUsuario, Municipio municipio, String nombre, String apellido, String nombreUsuario, String nombre1, String direccion, String contrasennia, boolean estado, boolean admin) {
@@ -144,5 +160,16 @@ public class Usuario{
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getEdad1Delegate() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.fechaBD );
+        if (this.fechaBD == null) return "";
+        else {
+            LocalDate localFechaNac = LocalDateTime.ofInstant(cal.toInstant(), cal.getTimeZone().toZoneId()).toLocalDate();
+            int edad = Period.between(localFechaNac, LocalDate.now()).getYears();
+            return new Integer(edad).toString();
+        }
     }
 }

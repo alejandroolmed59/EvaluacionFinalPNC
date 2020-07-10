@@ -147,6 +147,7 @@ public class AdminController {
 
     @PostMapping("/admin/post/editUsuario")
     public RedirectView postUsuario(Usuario user) throws ParseException {
+        user.setEdad(user.getEdad1Delegate());
         usuarioRepository.save(user);
         return new RedirectView("/admin/Usuarios");
     }

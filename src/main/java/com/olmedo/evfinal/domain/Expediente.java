@@ -54,6 +54,10 @@ public class Expediente {
     @Column(name = "nombrepadre")
     private String nombrepadre;
 
+    @NotEmpty(message = "El campo nombre del padre fijo no puede estar vacio")
+    @Column(name = "edad")
+    private String edad;
+
     @NotEmpty(message = "El campo nombre de la madre no puede estar vacio")
     @Column(name = "nombremadre")
     private String nombremadre;
@@ -66,6 +70,13 @@ public class Expediente {
     public Expediente() {
     }
 
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
 
     public int getIdExpediente() {
         return idExpediente;
