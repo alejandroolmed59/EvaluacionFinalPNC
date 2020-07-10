@@ -42,6 +42,7 @@ public class UserController {
 		mav.addObject("usuario", new Usuario());
 		mav.addObject("error", false);
 		mav.addObject("error2", false);
+		mav.addObject("error3", false);
 		mav.setViewName("Autenticacion/Login");
 		return mav;
 	}
@@ -50,16 +51,28 @@ public class UserController {
 	public ModelAndView menu(Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("error2",false);
+		mav.addObject("error3",false);
 		mav.addObject("error", true);
 		Usuario user = usuarioRepository.findByNombreUsuarioAndContrasennia(usuario.getNombreUsuario(), usuario.getContrasennia());
 		if(user!=null){
-			if(user.isEstado()){
+			if(user.isEstado() && !(user.getLoggedstatus())){
+				user.setLoggedstatus(true);
+				usuarioRepository.save(user);
 				Sesion sesion = Sesion.setSesion(user);
 				if(sesion.getUsuario().isAdmin())  return new ModelAndView( "redirect:/admin/index");
 				else return new ModelAndView( "redirect:/coordinador/index");
-			}else{
+			}
+			//Si ya esta loggeado muestra el error 3
+			 if(user.getLoggedstatus()){
+				 mav.addObject("error2",false);
+				 mav.addObject("error", false);
+				 mav.addObject("error3", true);
+			 }
+
+			else{
 				mav.addObject("error2",true);
 				mav.addObject("error", false);
+				mav.addObject("error3", false);
 			}
 		}
 		mav.addObject("usuario", new Usuario());
@@ -69,7 +82,11 @@ public class UserController {
 	}
 	@RequestMapping("/cerrarSesion")
 	public ModelAndView cerrarSesion() {
-		Sesion sesion = Sesion.setSesion(null);
+		//Sesion sesion = Sesion.setSesion(null);
+		Sesion sesion = Sesion.getSesion();
+		sesion.getUsuario().setLoggedstatus(false);
+		usuarioRepository.save(sesion.getUsuario());
+		Sesion.setSesion(null);
 		return new ModelAndView( "redirect:/login");
 	}
 	
