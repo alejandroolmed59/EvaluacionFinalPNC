@@ -42,6 +42,7 @@ public class AdminController {
             return new ModelAndView( "redirect:/login");
         }
         ModelAndView mav = new ModelAndView();
+        mav.addObject("adminName", sesion.getUsuario().getNombre());
         mav.setViewName("Administrador/index");
         return mav;
     }
