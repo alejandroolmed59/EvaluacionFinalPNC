@@ -92,6 +92,7 @@ public class UserController {
 	@RequestMapping("/insertUser")
 	public ModelAndView newUser(Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
+		usuario.setEdad(usuario.getEdad1Delegate());
 		usuarioRepository.save(usuario);
 		mav.addObject("usuario", new Usuario());
 		mav.setViewName("Autenticacion/Login");
