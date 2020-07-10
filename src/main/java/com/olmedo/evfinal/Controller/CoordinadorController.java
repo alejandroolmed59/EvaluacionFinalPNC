@@ -148,6 +148,7 @@ public class CoordinadorController {
         }
         ModelAndView mav = new ModelAndView();
         mav.addObject("expedientes", vistaAlumnos);
+        mav.addObject("titulo","Informacion de materias");
         mav.setViewName("/Coordinador/displayExpedienteFiltrado");
         return mav;
     }
@@ -173,6 +174,7 @@ public class CoordinadorController {
             vistaAlumnos.add(alumnoVista);
         }
         ModelAndView mav = new ModelAndView();
+        mav.addObject("titulo","Expedientes filtrados");
         mav.addObject("expedientes", vistaAlumnos);
         mav.setViewName("/Coordinador/displayExpedienteFiltrado");
         return mav;
