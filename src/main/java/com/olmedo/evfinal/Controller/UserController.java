@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.olmedo.evfinal.Repositories.UsuarioRepository;
+import com.olmedo.evfinal.Services.DepartamentoService;
 import com.olmedo.evfinal.Services.MunicipioService;
+import com.olmedo.evfinal.domain.Departamento;
 import com.olmedo.evfinal.domain.Municipio;
 import com.olmedo.evfinal.domain.Usuario;
 
@@ -19,6 +21,9 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+	
+	@Autowired
+	DepartamentoService departamentoService;
 	
 	@Autowired
 	MunicipioService municipioService;
@@ -92,7 +97,9 @@ public class UserController {
 	public ModelAndView insertarUser(@Valid @ModelAttribute Usuario usuario, BindingResult result){
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
+			List<Departamento> Departamentos = departamentoService.findAllDepartamentos();
 			List<Municipio> Municipios = municipioService.findAll();
+			mav.addObject("departamento", Departamentos);
 			mav.addObject("municipio", Municipios);
 			mav.setViewName("Autenticacion/Registrarse");
 		}
@@ -111,8 +118,10 @@ public class UserController {
 	@GetMapping("/form")
 	public ModelAndView form() {
 		List<Municipio> Municipios = municipioService.findAll();
+		List<Departamento>Departamentos = departamentoService.findAllDepartamentos();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usuario", new Usuario());
+		mav.addObject("departamento", Departamentos);
 		mav.addObject("municipio", Municipios);
 		mav.setViewName("Autenticacion/Registrarse");
 		return mav;

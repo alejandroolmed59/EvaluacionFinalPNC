@@ -39,14 +39,14 @@
                         Perfil
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
-                        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                        <a class="dropdown-item">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <h1 class="mt-4 ml-5 mb-5">¡Bienvenido, administrador!</h1>
+    <h1 class="mt-4 ml-5 mb-5" th:text="'¡Bienvenido, '+${adminName}"></h1>
 
     <div class="container-fluid">
         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Salir</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='/cerrarSesion'">Salir</button>
                 </div>
             </div>
         </div>

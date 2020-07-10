@@ -42,7 +42,7 @@
                         Perfil
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
-                        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                        <a class="dropdown-item">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>
@@ -52,10 +52,10 @@
         <img src="/img/school128.png" width="90" height="90" class="d-inline-block align-top mr-2" alt="">
         <h1 class="mt-4 ml-2 mb-4">Administrar Centros Escolares</h1>
     </div>
-    <button type="button" class="btn btn-success ml-5 mb-4 mt-2">
+    <a type="button" class="btn btn-success ml-5 mb-4 mt-2" href="/admin/editEscuela">
         <i class="fas fa-plus"></i>
         Nuevo Centro Escolar
-    </button>
+    </a>
     <div class="container-fluid">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <table class="table table-bordered table-hover">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Salir</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='/cerrarSesion'">Salir</button>
                 </div>
             </div>
         </div>

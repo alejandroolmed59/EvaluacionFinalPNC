@@ -30,14 +30,14 @@
                 <a class="nav-link active" th:href="@{/coordinador/filtrar}">Expediente de Alumnos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/coordinador/index}">Información de materias </a>
+                <a class="nav-link" th:href="@{/coordinador/materiascursadas}">Información de materias </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Perfil
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
-                    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                    <a class="dropdown-item">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
@@ -59,7 +59,7 @@
 
             <div class="card-body col-md-7">
                 <form method="post" th:action="@{/coordinador/post/filtrarExpedientes}" target="_blank">
-                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" th:href="@{/coordinador/index}" />
+                    <input type="button" class="btn btn-secondary mb-4" value="Regresar" onclick="location.href='/coordinador/index'"/>
                     <div class="form-group row">
                         <div class="col-sm-3">Buscar Alumno Por: </div>
                         <div class="col-sm-6">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Salir</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='/cerrarSesion'">Salir</button>
                 </div>
             </div>
         </div>
