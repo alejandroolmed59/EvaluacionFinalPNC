@@ -79,12 +79,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-3">Carné de minoridad: </div>
+                        <div class="col-sm-3">*Carné de minoridad: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="car" th:field="*{carnetMinoridad}"  placeholder="Carnet de minoridad">
                                 <span th:errors="*{carnetMinoridad}" style=color:#FF0000></span><br>
                             </div>
+                            <div><p>*La longitud tiene que ser igual a 9</p> </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -131,7 +132,7 @@
                                     <option th:each="es: ${escuelas}"  th:value="${es.idEscuela}" th:text="${es.nombre}"></option>
                                 </select>
                             </div>
-                            <div><p>Solo se muestran las escuelas del municipio de la sesion del coordinador</p> </div>
+                            <div><p>**Solo se muestran las escuelas del municipio de la sesion del coordinador</p> </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -160,9 +161,9 @@
                         <i class="fas fa-trash-alt"></i>
                         Limpiar
                     </button>
-                    <button type="button" class="btn btn-secondary" th:href="@{/coordinador/index}">
+                    <a type="button" class="btn btn-secondary" th:href="@{/coordinador/index}">
                         Regresar
-                    </button>
+                    </a>
                 </form>
             </div>
         </div>
