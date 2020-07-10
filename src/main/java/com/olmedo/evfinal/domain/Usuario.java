@@ -64,9 +64,6 @@ public class Usuario{
     @Column(name = "isadmin")
     private boolean admin;
 
-    @Column(name = "loggedstatus")
-    private boolean loggedstatus;
-
     public Date getFechaBD() {
         return fechaBD;
     }
@@ -86,7 +83,7 @@ public class Usuario{
         this.edad = edad;
     }
 
-    public Usuario(int idUsuario, Municipio municipio, String nombre, String apellido, String nombreUsuario, String nombre1, String direccion, String contrasennia, boolean estado, boolean admin, boolean loggedstatus) {
+    public Usuario(int idUsuario, Municipio municipio, String nombre, String apellido, String nombreUsuario, String nombre1, String direccion, String contrasennia, boolean estado, boolean admin) {
         this.idUsuario = idUsuario;
         this.municipio = municipio;
         this.nombre = nombre;
@@ -97,7 +94,6 @@ public class Usuario{
         this.contrasennia = contrasennia;
         this.estado = estado;
         this.admin = admin;
-        this.loggedstatus = loggedstatus;
     }
 
 	public int getIdUsuario() {
@@ -174,13 +170,6 @@ public class Usuario{
         this.nombreUsuario = nombreUsuario;
     }
 
-    public boolean getLoggedstatus() {
-        return loggedstatus;
-    }
-
-    public void setLoggedstatus(boolean loggedstatus) {
-        this.loggedstatus = loggedstatus;
-    }
 
     public String getEdad1Delegate() {
         Calendar cal = Calendar.getInstance();
