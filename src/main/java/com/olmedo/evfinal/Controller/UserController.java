@@ -69,7 +69,7 @@ public class UserController {
 
 */
 	@RequestMapping("/insertUser")
-	public ModelAndView insertarLibro(@Valid @ModelAttribute Usuario usuario, BindingResult result){
+	public ModelAndView insertarUser(@Valid @ModelAttribute Usuario usuario, BindingResult result){
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
 			List<Municipio> Municipios = municipioService.findAll();

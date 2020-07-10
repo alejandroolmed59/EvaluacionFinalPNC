@@ -69,6 +69,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" th:field="*{nombreUsuario}" name="usuario" placeholder="Nombre de usuario">
+                                <span th:errors="*{nombreUsuario}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -77,6 +78,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="password" class="form-control" name="constrasennia" th:field="*{contrasennia}"  placeholder="**********">
+                                <span th:errors="*{contrasennia}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -85,6 +87,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="nombre" th:field="*{nombre}"  placeholder="Nombre completo">
+                                <span th:errors="*{nombre}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -93,6 +96,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="apellido" th:field="*{apellido}"  placeholder="Apellido completo">
+                                <span th:errors="*{apellido}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -101,6 +105,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="direccion" th:field="*{direccion}"  placeholder="Direccion">
+                                <span th:errors="*{direccion}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -119,6 +124,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="date" id="fnacimiento" class="form-control" th:field="*{fechaBD}" placeholder="dd/mm/aaaa">
+                                <span th:errors="*{fechaBD}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>

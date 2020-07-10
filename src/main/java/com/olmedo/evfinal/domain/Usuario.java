@@ -3,6 +3,8 @@ package com.olmedo.evfinal.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -22,22 +24,29 @@ public class Usuario{
 		this.idUsuario = idUsuario;
 	}
 
+
+    @NotEmpty(message = "El campo nombre no puede estar vacio")
 	@Column(name = "nombre")
     private String nombre;
 
+    @NotEmpty(message = "El campo apellido no puede estar vacio")
     @Column(name = "apellido")
     private String apellido;
 
+    @NotEmpty(message = "El campo nombre usuario no puede estar vacio")
     @Column(name = "nombreusuario")
     private String nombreUsuario;
 
+    @NotNull(message = "El campo fecha no puede estar vacio")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fechanac")
     private Date fechaBD;
 
+    @NotEmpty(message = "El campo direccion no puede estar vacio")
     @Column(name = "direccion")
     private String direccion;
 
+    @NotEmpty(message = "El campo contrasenia no puede estar vacio")
     @Column(name = "contrasennia")
     private String contrasennia;
 
