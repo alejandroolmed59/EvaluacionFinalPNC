@@ -21,8 +21,8 @@ public interface ExpedienteRepository extends JpaRepository<Expediente, Integer>
     public void guardarMateria(int idexpediente, int idmateria, String ciclo, String annio, Number nota);
 
     @Query(value="UPDATE public.materiaexpediente\n" +
-            "\tSET  idmateria=?1, ciclo=?2, annio=?3, nota=?4" +
-            "\tWHERE id=?5;", nativeQuery=true)
+            "\tSET  idmateria=?1, ciclo=?2, annio=?3, nota=?4\n" +
+            "\tWHERE id=?5", nativeQuery=true)
     public void editMateria(int idmateria, String ciclo, String annio, Number nota, int id);
 
     @Query(value="SELECT COUNT(me.nota) AS Reprobadas\n" +

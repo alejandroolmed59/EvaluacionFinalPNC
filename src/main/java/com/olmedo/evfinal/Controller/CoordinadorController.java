@@ -81,7 +81,6 @@ public class CoordinadorController {
 
     @RequestMapping("/coordinador/editMateria/id/{id}")
     public ModelAndView editmateriasCursadas(@PathVariable("id") int id){
-        System.out.println(id);
         List<Materia> materias = materiaRepository.findAllOrdenado();
         ModelAndView mav = new ModelAndView();
         mav.addObject("materias", materias);
@@ -153,6 +152,7 @@ public class CoordinadorController {
     }
     @PostMapping("/coordinador/post/edit/Materia")
     public RedirectView editMateria(ExpedienteMateriaClase emc)  {
+        System.out.println(emc.getIdmateria()+" "+ emc.getIdmateria()+" "+emc.getId());
         try{
             expedienteRepository.editMateria( emc.getIdmateria(), emc.getCiclo(), emc.getAnnio(), emc.getNota(), emc.getId());
         }catch(Exception e){
