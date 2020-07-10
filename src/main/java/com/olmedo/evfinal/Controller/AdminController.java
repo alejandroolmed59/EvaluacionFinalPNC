@@ -11,12 +11,15 @@ import com.olmedo.evfinal.domain.Municipio;
 import com.olmedo.evfinal.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
@@ -58,7 +61,7 @@ public class AdminController {
         mav.setViewName("Administrador/displayUsuarios");
         return mav;
     }
-
+/*
     @RequestMapping("/admin/editUsuario")
     public ModelAndView nuevoUsuario(){
         Sesion sesion = Sesion.getSesion();
@@ -70,6 +73,32 @@ public class AdminController {
         mav.addObject("usuario", new Usuario());
         mav.addObject("municipios", listaMunicipios);
         mav.setViewName("Administrador/editUsuario");
+        return mav;
+    }
+*/
+    @RequestMapping("/admin/editUsuario")
+    public ModelAndView insertarUser(BindingResult result){
+        ModelAndView mav = new ModelAndView();
+        if(result.hasErrors()) {
+            List<Municipio> Municipios = municipioService.findAll();
+            mav.addObject("municipio", Municipios);
+            mav.setViewName("Administrador/editUsuario");
+        }
+        else{
+            try {
+                Sesion sesion = Sesion.getSesion();
+                if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+                    return new ModelAndView( "redirect:/login");
+                }
+                List<Municipio> listaMunicipios = municipioService.findAll();
+                mav.addObject("usuario", new Usuario());
+                mav.addObject("municipios", listaMunicipios);
+                mav.setViewName("Administrador/editUsuario");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return mav;
     }
 
@@ -182,11 +211,25 @@ public class AdminController {
         return new RedirectView("/admin/Escuelas");
     }
 
+    /*
     @PostMapping("/admin/post/editUsuario")
     public RedirectView postUsuario(Usuario user) throws ParseException {
         user.setEdad(user.getEdad1Delegate());
         usuarioRepository.save(user);
         return new RedirectView("/admin/Usuarios");
+    }
+*/
+    @PostMapping("/admin/post/editUsuario")
+    public RedirectView postUsuario(Usuario user, BindingResult result)throws ParseException{
+        if(result.hasErrors()) {
+            return new RedirectView("/admin/editUsuario");
+        }
+        else{
+            user.setEdad(user.getEdad1Delegate());
+            usuarioRepository.save(user);
+            return new RedirectView("/admin/Usuarios");
+            }
+
     }
 
 
