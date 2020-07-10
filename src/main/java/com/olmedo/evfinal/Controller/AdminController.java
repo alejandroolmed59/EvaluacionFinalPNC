@@ -221,7 +221,7 @@ public class AdminController {
     }
 */
     @PostMapping("/admin/post/editUsuario")
-    public RedirectView postUsuario(Usuario user, BindingResult result)throws ParseException{
+    public RedirectView postUsuario(Usuario user, BindingResult result){
         if(result.hasErrors()) {
             return new RedirectView("/admin/editUsuario");
         }

@@ -69,6 +69,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" th:field="*{nombre}" name="name" placeholder="Nombre">
+                                <span th:errors="*{nombre}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>
@@ -77,6 +78,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="des" th:field="*{descripcion}"  placeholder="Descripccion">
+                                <span th:errors="*{descripcion}" style=color:#FF0000></span><br>
                             </div>
                         </div>
                     </div>

@@ -82,7 +82,7 @@ public class UserController {
 		mav.setViewName("Autenticacion/Administrador");
 		return mav;
 	}
-/*
+
 	@RequestMapping("/insertUser")
 	public ModelAndView newUser(Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
@@ -92,7 +92,8 @@ public class UserController {
 		return mav;
 	}
 
-*/
+
+	/*
 	@RequestMapping("/insertUser")
 	public ModelAndView insertarUser(@Valid @ModelAttribute Usuario usuario, BindingResult result){
 		ModelAndView mav = new ModelAndView();
@@ -114,7 +115,7 @@ public class UserController {
 		}
 		return mav;
 	}
-	
+	*/
 	@GetMapping("/form")
 	public ModelAndView form() {
 		List<Municipio> Municipios = municipioService.findAll();
