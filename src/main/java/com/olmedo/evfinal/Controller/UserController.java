@@ -33,6 +33,11 @@ public class UserController {
 
 	@RequestMapping({"/login", "/"})
 	public ModelAndView login() {
+		Sesion sesion = Sesion.getSesion();
+		if(sesion!=null && sesion.getUsuario()!=null){
+			if(sesion.getUsuario().isAdmin()) return new ModelAndView( "redirect:/admin/index");
+			return new ModelAndView( "redirect:/coordinador/index");
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usuario", new Usuario());
 		mav.addObject("error", false);
