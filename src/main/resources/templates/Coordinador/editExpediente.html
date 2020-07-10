@@ -117,13 +117,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-3">Escuela: </div>
+                        <div class="col-sm-3">**Escuela: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <select th:field="*{escuela.idEscuela}"  class="form-control">
                                     <option th:each="es: ${escuelas}"  th:value="${es.idEscuela}" th:text="${es.nombre}"></option>
                                 </select>
                             </div>
+                            <div><p>Solo se muestran las escuelas del municipio de la sesion del coordinador</p> </div>
                         </div>
                     </div>
                     <div class="form-group row">

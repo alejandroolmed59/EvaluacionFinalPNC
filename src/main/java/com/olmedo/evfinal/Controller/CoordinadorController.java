@@ -48,7 +48,7 @@ public class CoordinadorController {
     }
     @RequestMapping("/coordinador/editExpediente")
     public ModelAndView nuevoExpediente(){
-        List<Escuela> escuelas = escuelaRepository.findAll();
+        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipio(3);
         ModelAndView mav = new ModelAndView();
         mav.addObject("flag",true);
         mav.addObject("expediente", new Expediente());
@@ -59,7 +59,7 @@ public class CoordinadorController {
     @RequestMapping("/coordinador/editExpediente/id/{idExpediente}")
     public ModelAndView editarExpediente(@PathVariable("idExpediente") int idExpediente){
         Expediente ex = expedienteRepository.getOne(idExpediente);
-        List<Escuela> escuelas = escuelaRepository.findAll();
+        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipio(1);
         ModelAndView mav = new ModelAndView();
         mav.addObject("flag",false);
         mav.addObject("expediente", ex);
