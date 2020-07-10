@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand mb-0 h1" th:href="@{/admin/index}">
-        <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
+        <img src="/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
         Proyecto Capas
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
     </div>
 </nav>
 <div class="d-flex ml-5 mb-2 mt-2">
-    <img src="../../static/img/users128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
+    <img src="/img/users128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
     <h1 class="mt-4 ml-2 mb-4">Administrar Usuarios</h1>
 </div>
 <button type="button" class="btn btn-success ml-5 mb-4 mt-2">
@@ -90,7 +90,7 @@
                     <th th:text="${usuario.municipio.nombreMunicipio}"/>
                     <th th:text="${usuario.municipio.departamento.nombreDepartamento}"/>
                     <th th:text="${usuario.fechaBD}"/>
-                    <th/>
+                    <th th:text="${usuario.edad}"/>
                     <th th:text="${usuario.direccion}"/>
                     <th th:text="${usuario.estado} ? 'Activo' : 'No activo'"/>
                     <th th:text="${usuario.isAdmin()}? 'Administrador' : 'Coordinador'"/>

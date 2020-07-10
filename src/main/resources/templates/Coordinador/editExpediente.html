@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand mb-0 h1" th:href="@{/coordinador/index}">
-        <img src="../../static/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
+        <img src="/img/logo.png" width="32" height="32" class="d-inline-block align-top mr-2" alt="">
         Proyecto Capas
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
     </div>
 </nav>
 <div class="d-flex ml-5 mb-2 mt-2">
-    <img src="../../static/img/editRecord128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
+    <img src="/img/editRecord128.png" width="100" height="100" class="d-inline-block align-top mr-2" alt="">
     <h1 class="mt-4 ml-2 mb-4">Editar Expediente</h1>
 </div>
 <div class="container-fluid mt-4">
@@ -117,13 +117,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-3">Escuela: </div>
+                        <div class="col-sm-3">**Escuela: </div>
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <select th:field="*{escuela.idEscuela}"  class="form-control">
                                     <option th:each="es: ${escuelas}"  th:value="${es.idEscuela}" th:text="${es.nombre}"></option>
                                 </select>
                             </div>
+                            <div><p>Solo se muestran las escuelas del municipio de la sesion del coordinador</p> </div>
                         </div>
                     </div>
                     <div class="form-group row">

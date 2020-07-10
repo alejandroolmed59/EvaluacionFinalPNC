@@ -8,6 +8,7 @@ import com.olmedo.evfinal.Services.ExpedienteService;
 import com.olmedo.evfinal.ViewModels.ExpedienteMateriaClase;
 import com.olmedo.evfinal.ViewModels.ExpedienteXmateria;
 import com.olmedo.evfinal.ViewModels.NotasAlumno;
+import com.olmedo.evfinal.config.Sesion;
 import com.olmedo.evfinal.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,20 +36,33 @@ public class CoordinadorController {
 
     @RequestMapping("/coordinador/index")
     public ModelAndView index() {
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         ModelAndView mav = new ModelAndView();
+        mav.addObject("nombreCoord", sesion.getUsuario().getNombre());
         mav.setViewName("/Coordinador/index");
         return mav;
     }
 
     @RequestMapping("/coordinador/filtrar")
     public ModelAndView coordinadorInicio(){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/Coordinador/BuscarExpediente");
         return mav;
     }
     @RequestMapping("/coordinador/editExpediente")
     public ModelAndView nuevoExpediente(){
-        List<Escuela> escuelas = escuelaRepository.findAll();
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
+        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipio(sesion.getUsuario().getMunicipio().getIdMunicipio());
         ModelAndView mav = new ModelAndView();
         mav.addObject("flag",true);
         mav.addObject("expediente", new Expediente());
@@ -58,8 +72,12 @@ public class CoordinadorController {
     }
     @RequestMapping("/coordinador/editExpediente/id/{idExpediente}")
     public ModelAndView editarExpediente(@PathVariable("idExpediente") int idExpediente){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         Expediente ex = expedienteRepository.getOne(idExpediente);
-        List<Escuela> escuelas = escuelaRepository.findAll();
+        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipio(1);
         ModelAndView mav = new ModelAndView();
         mav.addObject("flag",false);
         mav.addObject("expediente", ex);
@@ -70,6 +88,10 @@ public class CoordinadorController {
 
     @RequestMapping("/coordinador/Materias/id/{idExpediente}")
     public ModelAndView materiasCursadas(@PathVariable("idExpediente") int idExpediente){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         Expediente ex = expedienteRepository.getOne(idExpediente);
         ModelAndView mav = new ModelAndView();
         List<ExpedienteXmateria> emList = expedienteRepository.obtenerMateriasDeExpediente(idExpediente);
@@ -81,6 +103,10 @@ public class CoordinadorController {
 
     @RequestMapping("/coordinador/editMateria/id/{id}")
     public ModelAndView editmateriasCursadas(@PathVariable("id") int id){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Materia> materias = materiaRepository.findAllOrdenado();
         ModelAndView mav = new ModelAndView();
         mav.addObject("materias", materias);
@@ -90,6 +116,10 @@ public class CoordinadorController {
     }
     @RequestMapping("/coordinador/nueva/Materia/id/{idExpediente}")
     public ModelAndView nuevaMateriaCursada(@PathVariable("idExpediente") int idExpediente){
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         Expediente ex = expedienteRepository.getOne(idExpediente);
         ModelAndView mav = new ModelAndView();
 
@@ -103,6 +133,10 @@ public class CoordinadorController {
 
     @RequestMapping("/coordinador/materiascursadas")
     public ModelAndView MateriasCursadas() throws ParseException {
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
+        }
         List<Expediente> expedienteList = expedienteService.findAll();
         List<NotasAlumno> vistaAlumnos = new ArrayList<>();
         for (Expediente alumno:expedienteList) {
@@ -121,6 +155,8 @@ public class CoordinadorController {
     //POSTS
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(Expediente expediente) throws ParseException {
+        System.out.println(expediente.getEdad1Delegate());
+        expediente.setEdad(expediente.getEdad1Delegate());
         expedienteRepository.save(expediente);
         return new RedirectView("/coordinador/index");
     }

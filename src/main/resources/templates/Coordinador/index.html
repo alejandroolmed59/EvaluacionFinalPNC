@@ -36,14 +36,14 @@
                     Perfil
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-toggle="modal" data-target="#logoutModal">
-                    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                    <a class="dropdown-item" href="/cerrarSesion">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 
-<h1 class="mt-4 ml-5 mb-5">¡Bienvenido, coordinador!</h1>
+<h1 class="mt-4 ml-5 mb-5" th:text="${nombreCoord}+' bienvenido!'"> </h1>
 
 <div class="container-fluid">
     <div class="d-flex flex-column justify-content-center align-items-center">

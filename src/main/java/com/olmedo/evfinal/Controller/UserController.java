@@ -3,13 +3,11 @@ package com.olmedo.evfinal.Controller;
 import java.text.ParseException;
 import java.util.List;
 
+import com.olmedo.evfinal.config.Sesion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.olmedo.evfinal.Repositories.UsuarioRepository;
@@ -32,15 +30,37 @@ public class UserController {
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usuario", new Usuario());
+		mav.addObject("error", false);
+		mav.addObject("error2", false);
 		mav.setViewName("Autenticacion/Login");
 		return mav;
 	}
 	
 	@RequestMapping("/menu")
-	public ModelAndView menu() {
+	public ModelAndView menu(Usuario usuario) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("Autenticacion/menu");
+		mav.addObject("error2",false);
+		mav.addObject("error", true);
+		Usuario user = usuarioRepository.findByNombreUsuarioAndContrasennia(usuario.getNombreUsuario(), usuario.getContrasennia());
+		if(user!=null){
+			if(user.isEstado()){
+				Sesion sesion = Sesion.setSesion(user);
+				if(sesion.getUsuario().isAdmin())  return new ModelAndView( "redirect:/admin/index");
+				else return new ModelAndView( "redirect:/coordinador/index");
+			}else{
+				mav.addObject("error2",true);
+				mav.addObject("error", false);
+			}
+		}
+		mav.addObject("usuario", new Usuario());
+
+		mav.setViewName("Autenticacion/Login");
 		return mav;
+	}
+	@RequestMapping("/cerrarSesion")
+	public ModelAndView cerrarSesion() {
+		Sesion sesion = Sesion.setSesion(null);
+		return new ModelAndView( "redirect:/login");
 	}
 	
 	@RequestMapping("/Coordinador")
