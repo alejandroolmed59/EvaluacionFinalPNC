@@ -38,11 +38,10 @@
                         <span th:errors="*{fechaBD}" style=color:#FF0000></span><br>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" th:object="${departamento}">
                             <label for="inputDepartamento">Departamento</label>
                             <select id="inputDepartamento" class="form-control">
-                                <option selected>Departamento...</option>
-                                <option>...</option>
+                                <option th:each="d: ${departamento}" th:value="${d.idDepartamento}" th:text="${d.nombreDepartamento}"></option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">

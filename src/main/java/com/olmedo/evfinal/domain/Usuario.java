@@ -3,6 +3,7 @@ package com.olmedo.evfinal.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,30 +26,33 @@ public class Usuario{
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-
+	@Size(min=3, max=30, message ="El campo no puede quedar vacio y maximo de 30 caracteres")
 	@Column(name = "nombre")
     private String nombre;
-
+	
+	@Size(min=4, max=30, message ="El campo no puede quedar vacio y maximo de 30 caracteres")
     @Column(name = "apellido")
     private String apellido;
-
+	
+	@Size(min=4, max=30, message ="Minimo 4  y maximo de 30 caracteres")
     @Column(name = "nombreusuario")
     private String nombreUsuario;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fechanac")
     private Date fechaBD;
-
+    
+    @Size(min=4, max=100, message ="Minimo 4 caracteres y maximo de 30")
     @Column(name = "direccion")
     private String direccion;
-
+    
+    @Size(min=4, max=30, message ="Minimo 4 caracteres y maximo de 30")
     @Column(name = "contrasennia")
     private String contrasennia;
 
     @Column(name = "edad")
     private String edad;
-
-
+    
     @Column(name = "estado")
     private boolean estado;
 
