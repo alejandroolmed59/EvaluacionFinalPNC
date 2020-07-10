@@ -78,19 +78,13 @@ public class AdminController {
     }
 */
     @RequestMapping("/admin/editUsuario")
-    public ModelAndView insertarUser(BindingResult result){
+    public ModelAndView insertarUser(){
         ModelAndView mav = new ModelAndView();
-        if(result.hasErrors()) {
-            List<Municipio> Municipios = municipioService.findAll();
-            mav.addObject("municipio", Municipios);
-            mav.setViewName("Administrador/editUsuario");
+        Sesion sesion = Sesion.getSesion();
+        if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
+            return new ModelAndView( "redirect:/login");
         }
-        else{
             try {
-                Sesion sesion = Sesion.getSesion();
-                if(sesion==null || sesion.getUsuario()==null || !sesion.getUsuario().isAdmin()){
-                    return new ModelAndView( "redirect:/login");
-                }
                 List<Municipio> listaMunicipios = municipioService.findAll();
                 mav.addObject("usuario", new Usuario());
                 mav.addObject("municipios", listaMunicipios);
@@ -99,7 +93,7 @@ public class AdminController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
         return mav;
     }
 
@@ -201,15 +195,20 @@ public class AdminController {
 
     // POST ROUTES
     @PostMapping("/admin/post/editMateria")
-    public RedirectView postMateria(Materia materia){
-        System.out.println(materia.getIdMateria());
+    public RedirectView postMateria(@Valid @ModelAttribute("materia") Materia materia, BindingResult result){
+        if(result.hasErrors()){
+            return new RedirectView("redirect:/admin/editMaterias");
+        }
         materiaRepository.save(materia);
-        return new RedirectView("/admin/Materias");
+        return new RedirectView("redirect:/admin/Materias");
     }
     @PostMapping("/admin/post/editEscuela")
-    public RedirectView postEscuela(Escuela escuela){
+    public RedirectView postEscuela(@Valid @ModelAttribute("escuela") Escuela escuela, BindingResult result){
+        if(result.hasErrors()){
+            return new RedirectView("redirect:/admin/editEscuela");
+        }
         escuelaRepository.save(escuela);
-        return new RedirectView("/admin/Escuelas");
+        return new RedirectView("redirect:/admin/Escuelas");
     }
 
     /*
@@ -221,15 +220,15 @@ public class AdminController {
     }
 */
     @PostMapping("/admin/post/editUsuario")
-    public RedirectView postUsuario(Usuario user, BindingResult result){
+    public RedirectView postUsuario(@Valid @ModelAttribute("usuario") Usuario user, BindingResult result){
         if(result.hasErrors()) {
-            return new RedirectView("/admin/editUsuario");
+            return new RedirectView("redirect:/admin/editUsuario");
         }
         else{
             user.setEdad(user.getEdad1Delegate());
             usuarioRepository.save(user);
-            return new RedirectView("/admin/Usuarios");
-            }
+            return new RedirectView("redirect:/admin/Usuarios");
+        }
 
     }
 
