@@ -50,15 +50,12 @@ public class Expediente {
     @Column(name = "telmovil")
     private String telmovil;
 
-    @NotEmpty(message = "El campo nombre del padre fijo no puede estar vacio")
     @Column(name = "nombrepadre")
     private String nombrepadre;
 
-    @NotEmpty(message = "El campo nombre del padre fijo no puede estar vacio")
     @Column(name = "edad")
     private String edad;
 
-    @NotEmpty(message = "El campo nombre de la madre no puede estar vacio")
     @Column(name = "nombremadre")
     private String nombremadre;
 

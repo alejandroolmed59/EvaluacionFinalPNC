@@ -222,6 +222,7 @@ public class AdminController {
     @PostMapping("/admin/post/editUsuario")
     public RedirectView postUsuario(@Valid @ModelAttribute("usuario") Usuario user, BindingResult result){
         if(result.hasErrors()) {
+            System.out.println("Entro sh1");
             return new RedirectView("redirect:/admin/editUsuario");
         }
         else{

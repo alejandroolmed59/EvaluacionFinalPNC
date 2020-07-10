@@ -13,6 +13,7 @@ import com.olmedo.evfinal.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -61,7 +62,7 @@ public class CoordinadorController {
         if(sesion==null || sesion.getUsuario()==null || sesion.getUsuario().isAdmin()){
             return new ModelAndView( "redirect:/login");
         }
-        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipio(sesion.getUsuario().getMunicipio().getIdMunicipio());
+        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipioAndEstado(sesion.getUsuario().getMunicipio().getIdMunicipio(), true);
         ModelAndView mav = new ModelAndView();
         mav.addObject("flag",true);
         mav.addObject("expediente", new Expediente());
@@ -76,7 +77,8 @@ public class CoordinadorController {
             return new ModelAndView( "redirect:/login");
         }
         Expediente ex = expedienteRepository.getOne(idExpediente);
-        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipio(1);
+        List<Escuela> escuelas = escuelaRepository.findAllByMunicipio_IdMunicipioAndEstado(sesion.getUsuario().getMunicipio().getIdMunicipio(), true);
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("flag",false);
         mav.addObject("expediente", ex);
@@ -166,6 +168,10 @@ public class CoordinadorController {
     @PostMapping("/coordinador/post/editExpediente")
     public RedirectView postExpediente(@Valid @ModelAttribute("expediente") Expediente expediente, BindingResult result){
         if(result.hasErrors()) {
+            for (ObjectError error:result.getAllErrors()) {
+                System.out.println(error.toString());
+            }
+            System.out.println("entro chale");
             return new RedirectView("redirect:/coordinador/editExpediente");
         }
         else{
